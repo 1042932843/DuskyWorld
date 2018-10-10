@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="BannerView">
+        <attr name="BannerView_interval" format="integer"/>
+        <attr name="BannerView_slideSpeed" format="float"/>
+        <attr name="BannerView_indicatorDisplayed" format="boolean"/>
+        <attr name="BannerView_orientation" format="integer"/>
+        <attr name="BannerView_indicatorMargin" format="dimension"/>
+        <attr name="BannerView_auto" format="boolean"/>
+        <attr name="BannerView_spacing" format="dimension"/>
+        <attr name="BannerView_centerScale" format="float"/>
+
+    </declare-styleable>
+
+
+</resources>

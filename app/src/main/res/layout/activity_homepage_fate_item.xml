@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/dp_4"
+    android:layout_margin="@dimen/dp_6"
+    android:background="@drawable/bg_round_corner_line_grey"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
+    >
+
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_72"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorText"
+        android:layout_below="@+id/img"
+        android:layout_centerHorizontal="true"
+        android:text="电锯惊魂2"
+        android:textSize="@dimen/sp_12"
+        android:layout_margin="@dimen/dp_4"
+        />
+    <TextView
+        android:id="@+id/num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorHint"
+        android:text="3人看过"
+        android:textSize="@dimen/sp_10"
+        android:layout_margin="@dimen/dp_2"
+        />
+
+    <TextView
+        android:id="@+id/chose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/num"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/pink"
+        android:text="投票"
+        android:textSize="@dimen/sp_10"
+        android:layout_margin="@dimen/dp_2"
+        android:background="@drawable/bg_round_corner_line_pink"
+        android:paddingEnd="@dimen/dp_16"
+        android:paddingStart="@dimen/dp_16"
+        android:paddingTop="@dimen/dp_4"
+        android:paddingBottom="@dimen/dp_4"
+        />
+
+</RelativeLayout>

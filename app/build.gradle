@@ -1,0 +1,103 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        config {
+            keyAlias 'Dusky'
+            keyPassword 'a132132'
+            storeFile file('D:/AndroidPro/dsy/DuskyWorld/Dusky.jks')
+            storePassword 'a132132'
+        }
+    }
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.dusky.world"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName '1.0.0'
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.config
+        multiDexEnabled true
+        ndk {
+            //设置支持的SO库架构
+            abiFilters 'armeabi', 'armeabi-v7a', 'x86'
+        }
+    }
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    buildTypes {
+        release {
+            //是否优化zip
+            zipAlignEnabled true
+            //启用代码混淆
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+
+        debug {
+            //是否优化zip
+            zipAlignEnabled true
+            //启用代码混淆
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+    }
+    allprojects {
+        repositories {
+            mavenCentral()
+            google()
+            jcenter()
+        }
+    }
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "duskyworld_v${variant.versionName}_${releaseTime()}.apk"
+        }
+    }
+    productFlavors {
+    }
+    buildToolsVersion '28.0.2'
+}
+
+static def releaseTime() {
+    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'com.trello.rxlifecycle2:rxlifecycle:2.1.0'
+    implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
+    implementation 'com.tencent.bugly:crashreport_upgrade:latest.release'
+    implementation 'com.tencent.bugly:nativecrashreport:latest.release'
+    implementation 'com.google.zxing:core:3.2.0'
+    implementation project(':DuskyView')
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'jp.wasabeef:glide-transformations:3.3.0'
+    // If you want to use the GPU Filters
+    implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
+    implementation project(path: ':Player')
+}

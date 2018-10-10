@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.dusky.world.Module.activities.HomePage"
+    >
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        >
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleEnabled="false"
+            app:contentScrim="@color/mybg_light"
+            app:statusBarScrim="@android:color/transparent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_276"
+                >
+
+                <com.dusky.world.Design.starView.BackgroundView
+                    android:id="@+id/BackgroundView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible" />
+                <com.nbsix.dsy.bannerview.BannerView
+                    android:id="@+id/banner"
+                    android:layout_marginTop="@dimen/dp_56"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:background="@android:color/transparent"
+                    app:BannerView_interval="1000"
+                    app:BannerView_indicatorDisplayed="false"
+                    app:BannerView_slideSpeed="1.0"
+                    app:BannerView_orientation="0"
+                    app:BannerView_indicatorMargin="2dp"
+                    app:BannerView_auto="false"
+                    app:BannerView_spacing="@dimen/dp_8"
+                    app:BannerView_centerScale="1.3"
+                    />
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_56"
+                android:minHeight="@dimen/dp_56"
+                app:contentInsetStart="0dp"
+                app:contentInsetEnd="0dp"
+                app:layout_collapseMode="pin">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/dp_16"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:background="@android:color/transparent">
+
+                    <LinearLayout
+                        android:id="@+id/group_user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/user_avatar"
+                            android:layout_width="@dimen/dp_40"
+                            android:layout_height="@dimen/dp_40"
+                            android:layout_margin="8dp"
+                            android:src="@drawable/ic_user_default" />
+
+                        <TextView
+                            android:id="@+id/user_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/dp_4"
+                            android:layout_marginStart="@dimen/dp_4"
+                            android:gravity="center_vertical"
+                            android:minWidth="@dimen/dp_60"
+                            android:text="未登录"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/sp_14" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal"
+                        >
+
+                        <RelativeLayout
+                            android:id="@+id/msg_layout"
+                            android:layout_width="@dimen/dp_32"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/dp_8"
+                            android:layout_marginTop="@dimen/dp_8"
+                           >
+
+                            <ImageView
+                                android:id="@+id/msg"
+                                android:layout_width="@dimen/dp_24"
+                                android:layout_height="@dimen/dp_24"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/icon_msg"
+                                android:background="?android:attr/selectableItemBackgroundBorderless"
+                                android:theme="@style/RippleColorPrimary"/>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/search_layout"
+                            android:layout_width="@dimen/dp_32"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/dp_8"
+                            android:layout_marginTop="@dimen/dp_8"
+                           >
+                            <ImageView
+                                android:id="@+id/search"
+                                android:layout_width="@dimen/dp_24"
+                                android:layout_height="@dimen/dp_24"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/icon_search"
+                                android:background="?android:attr/selectableItemBackgroundBorderless"
+                                android:theme="@style/RippleColorPrimary"/>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/set_layout"
+                            android:layout_width="@dimen/dp_32"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/dp_8"
+                            android:layout_marginTop="@dimen/dp_8"
+                            >
+
+                            <ImageView
+                                android:id="@+id/set"
+                                android:layout_width="@dimen/dp_24"
+                                android:layout_height="@dimen/dp_24"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/icon_set"
+                                android:background="?android:attr/selectableItemBackgroundBorderless"
+                                android:theme="@style/RippleColorPrimary"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <include layout="@layout/activity_homepage_hot"/>
+        <include layout="@layout/activity_homepage_fate"/>
+        <include layout="@layout/activity_homepage_toosimple"/>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>
