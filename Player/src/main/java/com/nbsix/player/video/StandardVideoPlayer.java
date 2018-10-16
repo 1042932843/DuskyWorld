@@ -104,7 +104,7 @@ public class StandardVideoPlayer extends VideoPlayer {
     }
 
     /**
-     * 1.5.0开始加入，如果需要不同布局区分功能，需要重载
+     * 如果需要不同布局区分功能，需要重载
      */
     public StandardVideoPlayer(Context context, Boolean fullFlag) {
         super(context, fullFlag);

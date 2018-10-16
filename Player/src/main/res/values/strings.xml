@@ -6,5 +6,7 @@
     <string name="no_net">当前找不到网络</string>
     <string name="tips_not_wifi_cancel">停止播放</string>
     <string name="no_url">播放地址无效</string>
-
+    <!-- 音乐播放面板 -->
+    <string name="not_applicable">N/A</string>
+    <string name="time_def">--:--</string>
 </resources>
