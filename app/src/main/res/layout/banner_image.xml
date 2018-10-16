@@ -11,7 +11,7 @@
         android:scaleType="centerInside"
         android:layout_centerInParent="true"
         />
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -58,4 +58,13 @@
             android:textColor="@color/colorText"
             android:textSize="@dimen/sp_10" />
     </LinearLayout>
+    -->
+    <com.nbsix.player.music.StandardMusicPlayer
+        android:id="@+id/musicplayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentBottom="true"
+        />
 </RelativeLayout>
