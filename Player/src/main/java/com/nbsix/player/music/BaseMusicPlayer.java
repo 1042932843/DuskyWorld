@@ -2,13 +2,9 @@ package com.nbsix.player.music;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.SeekBar;
-import android.widget.TextView;
 
 import com.nbsix.player.VideoManager;
 import com.nbsix.player.listener.MediaPlayerListener;
@@ -32,8 +28,6 @@ public abstract class BaseMusicPlayer extends FrameLayout implements MediaPlayer
     protected float mSpeed = 1;//播放速度，只支持6.0以上
 
 
-    protected boolean mLockLand = false;//当前全屏是否锁定全屏
-
     protected boolean mLooping = false;//循环
 
     protected boolean mHadPlay = false;//是否播放过
@@ -55,12 +49,6 @@ public abstract class BaseMusicPlayer extends FrameLayout implements MediaPlayer
 
     protected Map<String, String> mMapHeadData = new HashMap<>();
 
-
-    protected ImageView mStartButton;
-
-    protected SeekBar mProgressBar;
-
-    protected TextView mCurrentTimeTextView, mTotalTimeTextView;
 
 
 

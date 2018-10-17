@@ -3,6 +3,7 @@ package com.nbsix.player.music;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nbsix.player.R;
+import com.nbsix.player.VideoManager;
 
 import java.io.File;
 
@@ -20,7 +22,7 @@ import java.io.File;
  */
 public class StandardMusicPlayer extends MusicPlayer {
     ImageView player_pre,player_next;
-
+    Context context;
 
     protected boolean mCacheFile = false; //是否是缓存的文件
 
@@ -47,21 +49,9 @@ public class StandardMusicPlayer extends MusicPlayer {
     @Override
     protected void init(Context context) {
         super.init(context);
+        this.context=context;
         mStartButton=(ImageView) findViewById(R.id.player_start);
-        mStartButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (TextUtils.isEmpty(mUrl)) {
-                    Toast.makeText(getContext(), getResources().getString(R.string.no_url), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (mCurrentState == CURRENT_STATE_NORMAL) {
-                    startPlayLogic();
-                } else if (mCurrentState == CURRENT_STATE_AUTO_COMPLETE) {
-                    onClickUiToggle();
-                }
-            }
-        });
+        mStartButton.setOnClickListener(this);
         player_pre=(ImageView) findViewById(R.id.player_pre);
         player_next=(ImageView) findViewById(R.id.player_next);
         mCurrentTimeTextView=(TextView)findViewById(R.id.scheduleTv);
@@ -93,10 +83,10 @@ public class StandardMusicPlayer extends MusicPlayer {
         super.setStateAndUi(state);
         switch (mCurrentState) {
             case CURRENT_STATE_NORMAL:
-
+                updateStartImg();
                 break;
             case CURRENT_STATE_PREPAREING:
-
+                updateStartImg();
                 break;
             case CURRENT_STATE_PLAYING:
                 updateStartImg();
@@ -105,14 +95,15 @@ public class StandardMusicPlayer extends MusicPlayer {
                 updateStartImg();
                 break;
             case CURRENT_STATE_ERROR:
-                //changeUiToError();
+                Log.d(TAG, "setStateAndUi: STATE_ERROR");
+                Toast.makeText(context, "播放链接失效了", Toast.LENGTH_SHORT).show();
+                updateStartImg();
                 break;
             case CURRENT_STATE_AUTO_COMPLETE:
-                mProgressBar.setProgress(100);
                 updateStartImg();
                 break;
             case CURRENT_STATE_PLAYING_BUFFERING_START:
-
+                updateStartImg();
                 break;
         }
     }

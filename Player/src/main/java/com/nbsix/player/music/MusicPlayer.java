@@ -3,54 +3,39 @@ package com.nbsix.player.music;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Matrix;
-import android.graphics.SurfaceTexture;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.view.Gravity;
-import android.view.MotionEvent;
-import android.view.Surface;
-import android.view.TextureView;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.view.Window;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.danikula.videocache.HttpProxyCacheServer;
 import com.danikula.videocache.file.Md5FileNameGenerator;
-import com.nbsix.player.MyTextureView;
 import com.nbsix.player.R;
 import com.nbsix.player.VideoManager;
 import com.nbsix.player.utils.CommonUtil;
 import com.nbsix.player.utils.Debuger;
 import com.nbsix.player.utils.StorageUtils;
-import com.nbsix.player.video.BaseVideoPlayer;
 
 import java.io.File;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.IjkLibLoader;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 import static com.nbsix.player.utils.CommonUtil.getTextSpeed;
-import static com.nbsix.player.utils.CommonUtil.hideNavKey;
-
 
 public abstract class MusicPlayer extends BaseMusicPlayer implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
 
-    public static final String TAG = "MusicPlayer";
+    public static final String TAG = MusicPlayer.class.getSimpleName();
 
 
     public static final int CURRENT_STATE_NORMAL = 0; //正常
@@ -61,8 +46,6 @@ public abstract class MusicPlayer extends BaseMusicPlayer implements View.OnClic
     public static final int CURRENT_STATE_AUTO_COMPLETE = 6; //自动播放结束
     public static final int CURRENT_STATE_ERROR = 7; //错误状态
 
-    public static final int FULL_SCREEN_NORMAL_DELAY = 2000;
-
     protected static int mBackUpPlayingBufferState = -1;
 
     protected static boolean IF_FULLSCREEN_FROM_NORMAL = false;
@@ -71,7 +54,6 @@ public abstract class MusicPlayer extends BaseMusicPlayer implements View.OnClic
 
     protected Timer UPDATE_PROGRESS_TIMER;
 
-    protected Surface mSurface;
 
     protected ProgressTimerTask mProgressTimerTask;
 
@@ -81,12 +63,7 @@ public abstract class MusicPlayer extends BaseMusicPlayer implements View.OnClic
 
     protected String mPlayTag = ""; //播放的tag，防止错误，因为普通的url也可能重复
 
-    protected Matrix mTransformCover = null;
-
     protected int mPlayPosition = -22; //播放的tag，防止错误，因为普通的url也可能重复
-
-
-    protected float mBrightnessData = -1; //亮度
 
 
     protected int mBuffterPoint;//缓存进度
@@ -100,6 +77,12 @@ public abstract class MusicPlayer extends BaseMusicPlayer implements View.OnClic
 
     protected boolean mTouchingProgressBar = false;
 
+
+    protected ImageView mStartButton;
+
+    protected SeekBar mProgressBar;
+
+    protected TextView mCurrentTimeTextView, mTotalTimeTextView;
 
 
     /**
@@ -143,12 +126,13 @@ public abstract class MusicPlayer extends BaseMusicPlayer implements View.OnClic
         this.mContext = context;
         View.inflate(context, getLayoutId(), this);
         mAudioManager = (AudioManager) getContext().getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+
     }
 
 
     /**
      * 设置自定义so包加载类，必须在setUp之前调用
-     * 不然setUp时会第一次实例化GSYVideoManager
+     * 不然setUp时会第一次实例化VideoManager
      */
     public void setIjkLibLoader(IjkLibLoader libLoader) {
         VideoManager.setIjkLibLoader(libLoader);
@@ -223,7 +207,7 @@ public abstract class MusicPlayer extends BaseMusicPlayer implements View.OnClic
     }
 
     /**
-     * 设置播放显示状态
+     * 设置播放状态
      *
      * @param state
      */
@@ -266,10 +250,13 @@ public abstract class MusicPlayer extends BaseMusicPlayer implements View.OnClic
     public void onClick(View v) {
         int i = v.getId();
 
-        if (i == R.id.start) {
+        if (i == R.id.player_start) {
             if (TextUtils.isEmpty(mUrl)) {
                 Toast.makeText(getContext(), getResources().getString(R.string.no_url), Toast.LENGTH_SHORT).show();
                 return;
+            }
+            if(mCurrentState == CURRENT_STATE_NORMAL){
+                startButtonLogic();
             }
             if (mCurrentState == CURRENT_STATE_PLAYING) {
                 VideoManager.instance().getMediaPlayer().pause();
@@ -281,14 +268,12 @@ public abstract class MusicPlayer extends BaseMusicPlayer implements View.OnClic
             } else if (mCurrentState == CURRENT_STATE_AUTO_COMPLETE) {
                 startButtonLogic();
             }
-        } else if (i == R.id.surface_container && mCurrentState == CURRENT_STATE_ERROR) {
+        } else if (mCurrentState == CURRENT_STATE_ERROR) {
 
             prepareVideo();
         }
     }
 
-    protected void showWifiDialog() {
-    }
 
     /**
      * 播放按键的逻辑
