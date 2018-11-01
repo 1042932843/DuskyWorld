@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nbsix.player.R;
-import com.nbsix.player.VideoManager;
 
 import java.io.File;
 
@@ -29,9 +28,6 @@ public class StandardMusicPlayer extends MusicPlayer {
     /**
      * 如果需要不同布局区分功能，需要重载
      */
-    public StandardMusicPlayer(Context context, Boolean fullFlag) {
-        super(context, fullFlag);
-    }
 
     public StandardMusicPlayer(Context context) {
         super(context);

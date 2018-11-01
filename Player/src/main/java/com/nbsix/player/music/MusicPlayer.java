@@ -48,7 +48,7 @@ public abstract class MusicPlayer extends BaseMusicPlayer implements View.OnClic
 
     protected static int mBackUpPlayingBufferState = -1;
 
-    protected static boolean IF_FULLSCREEN_FROM_NORMAL = false;
+
 
     public static boolean IF_RELEASE_WHEN_ON_PAUSE = true;
 
@@ -410,13 +410,6 @@ public abstract class MusicPlayer extends BaseMusicPlayer implements View.OnClic
     public void onAutoCompletion() {
         setStateAndUi(CURRENT_STATE_AUTO_COMPLETE);
 
-
-        if (IF_FULLSCREEN_FROM_NORMAL) {
-            IF_FULLSCREEN_FROM_NORMAL = false;
-            if (VideoManager.instance().lastListener() != null) {
-                VideoManager.instance().lastListener().onAutoCompletion();
-            }
-        }
         mAudioManager.abandonAudioFocus(onAudioFocusChangeListener);
         ((Activity) getContext()).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
@@ -425,12 +418,6 @@ public abstract class MusicPlayer extends BaseMusicPlayer implements View.OnClic
     public void onCompletion() {
         //make me normal first
         setStateAndUi(CURRENT_STATE_NORMAL);
-        if (IF_FULLSCREEN_FROM_NORMAL) {//如果在进入全屏后播放完就初始化自己非全屏的控件
-            IF_FULLSCREEN_FROM_NORMAL = false;
-            if (VideoManager.instance().lastListener() != null) {
-                VideoManager.instance().lastListener().onCompletion();//回到上面的onAutoCompletion
-            }
-        }
         VideoManager.instance().setCurrentVideoHeight(0);
         VideoManager.instance().setCurrentVideoWidth(0);
 
