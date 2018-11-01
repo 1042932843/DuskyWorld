@@ -14,8 +14,6 @@ import com.dusky.world.Base.DuskyApp;
 import com.dusky.world.Module.entity.Banner;
 import com.dusky.world.R;
 import com.nbsix.dsy.bannerview.BannerView;
-import com.nbsix.player.music.StandardMusicPlayer;
-import com.nbsix.player.video.NormalVideoPlayer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,12 +102,9 @@ public class WebBannerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     private class HolderTypeImg extends RecyclerView.ViewHolder {
         ImageView imageView;
-        StandardMusicPlayer musicPlayer;
         private HolderTypeImg(View itemView) {
             super(itemView);
             imageView = (ImageView) itemView.findViewById(R.id.image);
-            musicPlayer= (StandardMusicPlayer) itemView.findViewById(R.id.musicplayer);
-            musicPlayer.setUp("http://www.ytmp3.cn/down/53894.mp3",false);
         }
     }
     private void bindTypeImg(HolderTypeImg holder, final int position){
@@ -152,16 +147,15 @@ public class WebBannerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     private class HolderTypePlayer extends RecyclerView.ViewHolder {
-        NormalVideoPlayer player;
+
         private HolderTypePlayer(View itemView) {
             super(itemView);
-            player = (NormalVideoPlayer) itemView.findViewById(R.id.palyer);
+
         }
     }
 
     private void bindTypePlayer(HolderTypePlayer holder, final int position){
         String url = banners.get(position).getVideoUrl();
-        holder.player.setUp(url,false,"");
     }
 
 
