@@ -1,18 +1,8 @@
 package com.dusky.musicplayer.utils;
 
 public class VideoType {
-
-
-    //全屏裁减显示
-    public final static int SCREEN_TYPE_FULL = 4;
-
-
-
     //硬解码标志
     private static boolean MEDIA_CODEC_FLAG = false;
-
-
-
     /**
      * 使能硬解码，播放前设置
      */

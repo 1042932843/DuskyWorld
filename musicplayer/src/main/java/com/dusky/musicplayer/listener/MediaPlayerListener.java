@@ -1,4 +1,4 @@
-package com.dusky.musicplayer.Listener;
+package com.dusky.musicplayer.listener;
 
 public interface MediaPlayerListener {
     void onPrepared();
@@ -15,11 +15,7 @@ public interface MediaPlayerListener {
 
     void onInfo(int what, int extra);
 
-    void onVideoSizeChanged();
+    void onPause();
 
-    void onBackFullscreen();
-
-    void onVideoPause();
-
-    void onVideoResume();
+    void onResume();
 }

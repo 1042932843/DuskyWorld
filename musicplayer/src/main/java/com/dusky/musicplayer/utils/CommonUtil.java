@@ -1,30 +1,16 @@
 package com.dusky.musicplayer.utils;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
-import android.content.ContextWrapper;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Build;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.ContextThemeWrapper;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
-import android.view.View;
-import android.view.WindowManager;
-
+import android.os.Environment;
 import java.io.File;
 import java.util.Formatter;
 import java.util.Locale;
 
 /**
- * 公共类
+ * 工具类
  */
 
 public class CommonUtil {
+
     public static String stringForTime(int timeMs) {
         if (timeMs <= 0 || timeMs >= 24 * 60 * 60 * 1000) {
             return "00:00";
@@ -41,192 +27,7 @@ public class CommonUtil {
             return mFormatter.format("%02d:%02d", minutes, seconds).toString();
         }
     }
-
-    public static boolean isWifiConnected(Context context) {
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo wifiNetworkInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        if (wifiNetworkInfo.isConnected()) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Get activity from context object
-     *
-     * @param context something
-     * @return object of Activity or null if it is not Activity
-     */
-    public static Activity scanForActivity(Context context) {
-        if (context == null) return null;
-
-        if (context instanceof Activity) {
-            return (Activity) context;
-        } else if (context instanceof ContextWrapper) {
-            return scanForActivity(((ContextWrapper) context).getBaseContext());
-        }
-
-        return null;
-    }
-
-    /**
-     * 获取状态栏高度
-     *
-     * @param context 上下文
-     * @return 状态栏高度
-     */
-    public static int getStatusBarHeight(Context context) {
-        int result = 0;
-        int resourceId = context.getResources()
-                .getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            result = context.getResources().getDimensionPixelSize(resourceId);
-        }
-        return result;
-    }
-
-    /**
-     * 获取ActionBar高度
-     *
-     * @param activity activity
-     * @return ActionBar高度
-     */
-    public static int getActionBarHeight(Activity activity) {
-        TypedValue tv = new TypedValue();
-        if (activity.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
-            return TypedValue.complexToDimensionPixelSize(tv.data, activity.getResources().getDisplayMetrics());
-        }
-        return 0;
-    }
-
-
-    @SuppressLint("RestrictedApi")
-    public static void hideSupportActionBar(Context context, boolean actionBar, boolean statusBar) {
-        if (actionBar) {
-            AppCompatActivity appCompatActivity = CommonUtil.getAppCompActivity(context);
-            if (appCompatActivity != null) {
-                ActionBar ab = appCompatActivity.getSupportActionBar();
-                if (ab != null) {
-                    ab.setShowHideAnimationEnabled(false);
-                    ab.hide();
-                }
-            }
-        }
-        if (statusBar) {
-            if (context instanceof FragmentActivity) {
-                FragmentActivity fragmentActivity = (FragmentActivity) context;
-                fragmentActivity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                        WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            } else {
-                CommonUtil.getAppCompActivity(context).getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                        WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            }
-        }
-    }
-
-    @SuppressLint("RestrictedApi")
-    public static void showSupportActionBar(Context context, boolean actionBar, boolean statusBar) {
-        if (actionBar) {
-            AppCompatActivity appCompatActivity = CommonUtil.getAppCompActivity(context);
-            if (appCompatActivity != null) {
-                ActionBar ab = appCompatActivity.getSupportActionBar();
-                if (ab != null) {
-                    ab.setShowHideAnimationEnabled(false);
-                    ab.show();
-                }
-            }
-        }
-
-        if (statusBar) {
-            if (context instanceof FragmentActivity) {
-                FragmentActivity fragmentActivity = (FragmentActivity) context;
-                fragmentActivity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            } else {
-                CommonUtil.getAppCompActivity(context).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            }
-        }
-    }
-
-    public static void hideNavKey(Context context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            //       设置屏幕始终在前面，不然点击鼠标，重新出现虚拟按键
-            ((Activity) context).getWindow().getDecorView().setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav
-                            // bar
-                            | View.SYSTEM_UI_FLAG_IMMERSIVE);
-        } else {
-            ((Activity) context).getWindow().getDecorView().setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav
-            );
-        }
-    }
-
-    public static void showNavKey(Context context, int systemUiVisibility) {
-        ((Activity) context).getWindow().getDecorView().setSystemUiVisibility(systemUiVisibility);
-    }
-
-
-    /**
-     * Get AppCompatActivity from context
-     *
-     * @param context
-     * @return AppCompatActivity if it's not null
-     */
-    public static AppCompatActivity getAppCompActivity(Context context) {
-        if (context == null) return null;
-        if (context instanceof AppCompatActivity) {
-            return (AppCompatActivity) context;
-        } else if (context instanceof ContextThemeWrapper) {
-            return getAppCompActivity(((ContextThemeWrapper) context).getBaseContext());
-        }
-        return null;
-    }
-
-
-    /**
-     * dip转为PX
-     */
-    public static int dip2px(Context context, float dipValue) {
-        float fontScale = context.getResources().getDisplayMetrics().density;
-        return (int) (dipValue * fontScale + 0.5f);
-    }
-
-    /**
-     * 根据手机的分辨率从 px 的单位 转成为 dp
-     */
-    public static int px2dip(Context context, float pxValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (pxValue / scale + 0.5f);
-    }
-
-    /**
-     * 获取屏幕的宽度px
-     *
-     * @param context 上下文
-     * @return 屏幕宽px
-     */
-    public static int getScreenWidth(Context context) {
-        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics outMetrics = new DisplayMetrics();// 创建了一张白纸
-        windowManager.getDefaultDisplay().getMetrics(outMetrics);// 给白纸设置宽高
-        return outMetrics.widthPixels;
-    }
-
-    /**
-     * 获取屏幕的高度px
-     *
-     * @param context 上下文
-     * @return 屏幕高px
-     */
-    public static int getScreenHeight(Context context) {
-        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics outMetrics = new DisplayMetrics();// 创建了一张白纸
-        windowManager.getDefaultDisplay().getMetrics(outMetrics);// 给白纸设置宽高
-        return outMetrics.heightPixels;
-    }
-
+    
     /**
      * 下载速度文本
      */
@@ -253,6 +54,40 @@ public class CommonUtil {
                     deleteFile(filePath + File.separator + path);
                 }
                 file.delete();
+            }
+        }
+    }
+
+
+    private static final String SD_PATH = Environment.getExternalStorageDirectory().getPath();
+
+    public static final String NAME = "Media";
+
+
+    public static String getAppPath(String name) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(SD_PATH);
+        sb.append(File.separator);
+        sb.append(name);
+        sb.append(File.separator);
+        return sb.toString();
+    }
+
+    public static String getPath() {
+        return getAppPath(NAME);
+    }
+
+    public static void deleteFiles(File root) {
+        File files[] = root.listFiles();
+        if (files != null) {
+            for (File f : files) {
+                if (!f.isDirectory() && f.exists()) { // 判断是否存在
+                    try {
+                        f.delete();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
     }

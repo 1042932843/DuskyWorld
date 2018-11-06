@@ -15,11 +15,10 @@ import android.view.Surface;
 import com.danikula.videocache.CacheListener;
 import com.danikula.videocache.HttpProxyCacheServer;
 import com.danikula.videocache.file.Md5FileNameGenerator;
-import com.dusky.musicplayer.Listener.MediaPlayerListener;
+import com.dusky.musicplayer.listener.MediaPlayerListener;
 import com.dusky.musicplayer.model.Model;
 import com.dusky.musicplayer.model.VideoOptionModel;
 import com.dusky.musicplayer.utils.CommonUtil;
-import com.dusky.musicplayer.utils.FileUtils;
 import com.dusky.musicplayer.utils.StorageUtils;
 import com.dusky.musicplayer.utils.VideoType;
 
@@ -122,7 +121,7 @@ public class VideoManager implements IMediaPlayer.OnPreparedListener, IMediaPlay
     public static void clearAllDefaultCache(Context context) {
         String path = StorageUtils.getIndividualCacheDirectory
                 (context.getApplicationContext()).getAbsolutePath();
-        FileUtils.deleteFiles(new File(path));
+        CommonUtil.deleteFiles(new File(path));
     }
 
     /**
@@ -488,7 +487,7 @@ public class VideoManager implements IMediaPlayer.OnPreparedListener, IMediaPlay
      */
     public static void onPause() {
         if (VideoManager.instance().listener() != null) {
-            VideoManager.instance().listener().onVideoPause();
+            VideoManager.instance().listener().onPause();
         }
     }
 
@@ -497,7 +496,7 @@ public class VideoManager implements IMediaPlayer.OnPreparedListener, IMediaPlay
      */
     public static void onResume() {
         if (VideoManager.instance().listener() != null) {
-            VideoManager.instance().listener().onVideoResume();
+            VideoManager.instance().listener().onResume();
         }
     }
 
