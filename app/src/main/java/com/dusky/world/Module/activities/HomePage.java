@@ -30,6 +30,7 @@ import com.dusky.world.Base.BaseActivity;
 import com.dusky.world.Base.DuskyApp;
 import com.dusky.world.Module.entity.TooSimple;
 import com.dusky.world.R;
+import com.dusky.world.Utils.CommonUtil;
 import com.dusky.world.Utils.ToastUtil;
 import com.nbsix.dsy.badgeView.BadgeView;
 import com.nbsix.dsy.bannerview.BannerView;
@@ -175,13 +176,8 @@ public class HomePage extends BaseActivity {
 
     @SuppressLint("CheckResult")
     public void loadData(){
-        Observable.timer(1000, TimeUnit.MILLISECONDS)
-                .compose(this.bindToLifecycle())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(aLong -> {
-                    MultiTransformation multi = new MultiTransformation(new CircleCropBorder(4,getResources().getColor(R.color.gray_light)));
-                    Glide.with(HomePage.this).load(R.drawable.banner).apply(bitmapTransform(multi)).into(user_avatar);
-                });
+        MultiTransformation multi = new MultiTransformation(new CircleCropBorder(4,getResources().getColor(R.color.gray_light)));
+        Glide.with(HomePage.this).load(R.drawable.banner).apply(bitmapTransform(multi)).into(user_avatar);
     }
 
     @Override
@@ -191,6 +187,10 @@ public class HomePage extends BaseActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        if (!CommonUtil.isNetworkAvailable(this)) {
+            CommonUtil.showNoNetWorkDlg(this);
+        }
+
         setBadge();
         loadData();
         setFate();
