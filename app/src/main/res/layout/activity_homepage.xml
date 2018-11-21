@@ -83,7 +83,7 @@
                             android:layout_width="@dimen/dp_40"
                             android:layout_height="@dimen/dp_40"
                             android:layout_margin="8dp"
-                            android:src="@drawable/ic_user_default" />
+                            />
 
                         <TextView
                             android:id="@+id/user_name"
