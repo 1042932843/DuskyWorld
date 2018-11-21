@@ -34,9 +34,6 @@ public abstract class BaseActivity extends RxAppCompatActivity {
     SystemBarHelper.immersiveStatusBar(this);
     //设置布局内容
     setContentView(getLayoutId());
-    if (!CommonUtil.isNetworkAvailable(this)) {
-      CommonUtil.showNoNetWorkDlg(this);
-    }
     //初始化黄油刀控件绑定框架
     bind = ButterKnife.bind(this);
     //初始化控件

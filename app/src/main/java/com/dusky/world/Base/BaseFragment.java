@@ -46,7 +46,6 @@ public abstract class BaseFragment extends RxFragment implements View.OnTouchLis
 
   @Override
   public void onViewCreated(View view, Bundle savedInstanceState) {
-
     super.onViewCreated(view, savedInstanceState);
     bind = ButterKnife.bind(this, view);
     view.setOnTouchListener(this);
