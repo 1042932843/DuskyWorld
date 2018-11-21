@@ -1,4 +1,4 @@
-package com.dusky.musicplayer.utils;
+package com.dusky.duskyplayer.utils;
 
 public class VideoType {
     //硬解码标志

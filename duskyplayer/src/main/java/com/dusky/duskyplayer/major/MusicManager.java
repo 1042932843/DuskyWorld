@@ -1,4 +1,4 @@
-package com.dusky.musicplayer.major;
+package com.dusky.duskyplayer.major;
 
 
 import android.content.Context;
@@ -15,12 +15,12 @@ import android.view.Surface;
 import com.danikula.videocache.CacheListener;
 import com.danikula.videocache.HttpProxyCacheServer;
 import com.danikula.videocache.file.Md5FileNameGenerator;
-import com.dusky.musicplayer.listener.MediaPlayerListener;
-import com.dusky.musicplayer.model.Model;
-import com.dusky.musicplayer.model.VideoOptionModel;
-import com.dusky.musicplayer.utils.CommonUtil;
-import com.dusky.musicplayer.utils.StorageUtils;
-import com.dusky.musicplayer.utils.VideoType;
+import com.dusky.duskyplayer.listener.MediaPlayerListener;
+import com.dusky.duskyplayer.model.Model;
+import com.dusky.duskyplayer.model.VideoOptionModel;
+import com.dusky.duskyplayer.utils.CommonUtil;
+import com.dusky.duskyplayer.utils.StorageUtils;
+import com.dusky.duskyplayer.utils.VideoType;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,13 +37,13 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer;
  * 视媒体管理，单例
  */
 
-public class VideoManager implements IMediaPlayer.OnPreparedListener, IMediaPlayer.OnCompletionListener,
+public class MusicManager implements IMediaPlayer.OnPreparedListener, IMediaPlayer.OnCompletionListener,
         IMediaPlayer.OnBufferingUpdateListener, IMediaPlayer.OnSeekCompleteListener, IMediaPlayer.OnErrorListener,
         IMediaPlayer.OnInfoListener, CacheListener {
 
-    public static String TAG = VideoManager.class.getSimpleName();
+    public static String TAG = MusicManager.class.getSimpleName();
 
-    private static VideoManager videoManager;
+    private static MusicManager musicManager;
 
     public static final int HANDLER_PREPARE = 0;
     public static final int HANDLER_SETDISPLAY = 1;
@@ -87,11 +87,11 @@ public class VideoManager implements IMediaPlayer.OnPreparedListener, IMediaPlay
     private boolean needTimeOutOther; //是否需要外部超时判断
 
 
-    public static synchronized VideoManager instance() {
-        if (videoManager == null) {
-            videoManager = new VideoManager(ijkLibLoader);
+    public static synchronized MusicManager instance() {
+        if (musicManager == null) {
+            musicManager = new MusicManager(ijkLibLoader);
         }
-        return videoManager;
+        return musicManager;
     }
 
     /**
@@ -110,9 +110,9 @@ public class VideoManager implements IMediaPlayer.OnPreparedListener, IMediaPlay
      * 获取缓存代理服务
      */
     public static HttpProxyCacheServer getProxy(Context context) {
-        HttpProxyCacheServer proxy = VideoManager.instance().proxy;
-        return proxy == null ? (VideoManager.instance().proxy =
-                VideoManager.instance().newProxy(context)) : proxy;
+        HttpProxyCacheServer proxy = MusicManager.instance().proxy;
+        return proxy == null ? (MusicManager.instance().proxy =
+                MusicManager.instance().newProxy(context)) : proxy;
     }
 
     /**
@@ -152,23 +152,23 @@ public class VideoManager implements IMediaPlayer.OnPreparedListener, IMediaPlay
         }
 
         //如果已经有缓存文件路径，那么判断缓存文件路径是否一致
-        if (VideoManager.instance().cacheFile != null
-                && !VideoManager.instance().cacheFile.getAbsolutePath().equals(file.getAbsolutePath())) {
+        if (MusicManager.instance().cacheFile != null
+                && !MusicManager.instance().cacheFile.getAbsolutePath().equals(file.getAbsolutePath())) {
             //不一致先关了旧的
-            HttpProxyCacheServer proxy = VideoManager.instance().proxy;
+            HttpProxyCacheServer proxy = MusicManager.instance().proxy;
 
             if (proxy != null) {
                 proxy.shutdown();
             }
             //开启新的
-            return (VideoManager.instance().proxy =
-                    VideoManager.instance().newProxy(context, file));
+            return (MusicManager.instance().proxy =
+                    MusicManager.instance().newProxy(context, file));
         } else {
             //还没有缓存文件的或者一致的，返回原来
-            HttpProxyCacheServer proxy = VideoManager.instance().proxy;
+            HttpProxyCacheServer proxy = MusicManager.instance().proxy;
 
-            return proxy == null ? (VideoManager.instance().proxy =
-                    VideoManager.instance().newProxy(context, file)) : proxy;
+            return proxy == null ? (MusicManager.instance().proxy =
+                    MusicManager.instance().newProxy(context, file)) : proxy;
         }
     }
 
@@ -224,7 +224,7 @@ public class VideoManager implements IMediaPlayer.OnPreparedListener, IMediaPlay
     /***
      * @param libLoader 是否使用外部动态加载so
      * */
-    public VideoManager(IjkLibLoader libLoader) {
+    public MusicManager(IjkLibLoader libLoader) {
         mediaPlayer = (libLoader == null) ? new IjkMediaPlayer() : new IjkMediaPlayer(libLoader);
         ijkLibLoader = libLoader;
         mMediaHandlerThread = new HandlerThread(TAG);
@@ -254,7 +254,7 @@ public class VideoManager implements IMediaPlayer.OnPreparedListener, IMediaPlay
                     }
                     setNeedMute(false);
                     if (proxy != null) {
-                        proxy.unregisterCacheListener(VideoManager.this);
+                        proxy.unregisterCacheListener(MusicManager.this);
                     }
                     buffterPoint = 0;
                     cancelTimeOutBuffer();
@@ -269,13 +269,13 @@ public class VideoManager implements IMediaPlayer.OnPreparedListener, IMediaPlay
             mediaPlayer.release();
             initIJKPlayer(msg);
             setNeedMute(needMute);
-            mediaPlayer.setOnCompletionListener(VideoManager.this);
-            mediaPlayer.setOnBufferingUpdateListener(VideoManager.this);
+            mediaPlayer.setOnCompletionListener(MusicManager.this);
+            mediaPlayer.setOnBufferingUpdateListener(MusicManager.this);
             mediaPlayer.setScreenOnWhilePlaying(true);
-            mediaPlayer.setOnPreparedListener(VideoManager.this);
-            mediaPlayer.setOnSeekCompleteListener(VideoManager.this);
-            mediaPlayer.setOnErrorListener(VideoManager.this);
-            mediaPlayer.setOnInfoListener(VideoManager.this);
+            mediaPlayer.setOnPreparedListener(MusicManager.this);
+            mediaPlayer.setOnSeekCompleteListener(MusicManager.this);
+            mediaPlayer.setOnErrorListener(MusicManager.this);
+            mediaPlayer.setOnInfoListener(MusicManager.this);
             mediaPlayer.prepareAsync();
 
         } catch (Exception e) {
@@ -486,8 +486,8 @@ public class VideoManager implements IMediaPlayer.OnPreparedListener, IMediaPlay
      * 暂停播放
      */
     public static void onPause() {
-        if (VideoManager.instance().listener() != null) {
-            VideoManager.instance().listener().onPause();
+        if (MusicManager.instance().listener() != null) {
+            MusicManager.instance().listener().onPause();
         }
     }
 
@@ -495,8 +495,8 @@ public class VideoManager implements IMediaPlayer.OnPreparedListener, IMediaPlay
      * 恢复播放
      */
     public static void onResume() {
-        if (VideoManager.instance().listener() != null) {
-            VideoManager.instance().listener().onResume();
+        if (MusicManager.instance().listener() != null) {
+            MusicManager.instance().listener().onResume();
         }
     }
 
@@ -569,19 +569,14 @@ public class VideoManager implements IMediaPlayer.OnPreparedListener, IMediaPlay
 
     /**
      * 是否需要在buffer缓冲时，增加外部超时判断
-     *
      * 超时后会走onError接口，播放器通过onPlayError回调出
-     *
-     * 错误码为 ： BUFFER_TIME_OUT_ERROR = -192
-     *
-     * 由于onError之后执行GSYVideoPlayer的OnError，如果不想触发错误，
+     * 错误码： BUFFER_TIME_OUT_ERROR = -192
+     * 由于onError之后执行Player的OnError，如果不想触发错误，
      * 可以重载onError，在super之前拦截处理。
-     *
      * public void onError(int what, int extra){
      *      do you want before super and return;
      *      super.onError(what, extra)
      * }
-     *
      * @param timeOut          超时时间，毫秒 默认8000
      * @param needTimeOutOther 是否需要延时设置，默认关闭
      */

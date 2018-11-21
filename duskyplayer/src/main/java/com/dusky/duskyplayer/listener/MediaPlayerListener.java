@@ -1,4 +1,4 @@
-package com.dusky.musicplayer.listener;
+package com.dusky.duskyplayer.listener;
 
 public interface MediaPlayerListener {
     void onPrepared();

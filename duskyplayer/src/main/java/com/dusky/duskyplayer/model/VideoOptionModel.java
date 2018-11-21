@@ -1,4 +1,4 @@
-package com.dusky.musicplayer.model;
+package com.dusky.duskyplayer.model;
 
 /**
  * 配置ijk option用的

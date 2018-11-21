@@ -1,4 +1,4 @@
-package com.dusky.musicplayer.music;
+package com.dusky.duskyplayer.music;
 
 import android.app.Activity;
 import android.content.Context;
@@ -18,11 +18,10 @@ import android.widget.Toast;
 
 import com.danikula.videocache.HttpProxyCacheServer;
 import com.danikula.videocache.file.Md5FileNameGenerator;
-import com.dusky.musicplayer.R;
-import com.dusky.musicplayer.listener.MediaPlayerListener;
-import com.dusky.musicplayer.major.VideoManager;
-import com.dusky.musicplayer.utils.CommonUtil;
-import com.dusky.musicplayer.utils.StorageUtils;
+import com.dusky.duskyplayer.listener.MediaPlayerListener;
+import com.dusky.duskyplayer.major.MusicManager;
+import com.dusky.duskyplayer.utils.CommonUtil;
+import com.dusky.duskyplayer.utils.StorageUtils;
 
 import java.io.File;
 import java.util.HashMap;
@@ -33,7 +32,7 @@ import java.util.TimerTask;
 import tv.danmaku.ijk.media.player.IjkLibLoader;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
-import static com.dusky.musicplayer.utils.CommonUtil.getTextSpeed;
+import static com.dusky.duskyplayer.utils.CommonUtil.getTextSpeed;
 
 
 public abstract class BaseMusicPlayer extends FrameLayout implements MediaPlayerListener, SeekBar.OnSeekBarChangeListener {
@@ -120,7 +119,7 @@ public abstract class BaseMusicPlayer extends FrameLayout implements MediaPlayer
      */
     public BaseMusicPlayer(Context context, IjkLibLoader ijkLibLoader) {
         super(context);
-        VideoManager.setIjkLibLoader(ijkLibLoader);
+        MusicManager.setIjkLibLoader(ijkLibLoader);
         init(context);
     }
 
@@ -147,7 +146,7 @@ public abstract class BaseMusicPlayer extends FrameLayout implements MediaPlayer
      * 不然setUp时会第一次实例化VideoManager
      */
     public void setIjkLibLoader(IjkLibLoader libLoader) {
-        VideoManager.setIjkLibLoader(libLoader);
+        MusicManager.setIjkLibLoader(libLoader);
     }
 
     /**
@@ -199,13 +198,13 @@ public abstract class BaseMusicPlayer extends FrameLayout implements MediaPlayer
         mOriginUrl = url;
         mCurrentState = CURRENT_STATE_NORMAL;
         if (cacheWithPlay && url.startsWith("http") && !url.contains("127.0.0.1")) {
-            HttpProxyCacheServer proxy = VideoManager.getProxy(getContext().getApplicationContext(), cachePath);
+            HttpProxyCacheServer proxy = MusicManager.getProxy(getContext().getApplicationContext(), cachePath);
             //此处转换了url，然后再赋值给mUrl。
             url = proxy.getProxyUrl(url);
             mCacheFile = (!url.startsWith("http"));
             //注册上缓冲监听
-            if (!mCacheFile && VideoManager.instance() != null) {
-                proxy.registerCacheListener(VideoManager.instance(), mOriginUrl);
+            if (!mCacheFile && MusicManager.instance() != null) {
+                proxy.registerCacheListener(MusicManager.instance(), mOriginUrl);
             }
         } else if (!cacheWithPlay && (!url.startsWith("http") && !url.startsWith("rtmp") && !url.startsWith("rtsp"))) {
             mCacheFile = true;
@@ -227,7 +226,7 @@ public abstract class BaseMusicPlayer extends FrameLayout implements MediaPlayer
             case CURRENT_STATE_NORMAL:
                 if (isCurrentMediaListener()) {
                     cancelProgressTimer();
-                    VideoManager.instance().releaseMediaPlayer();
+                    MusicManager.instance().releaseMediaPlayer();
                     mBuffterPoint = 0;
                 }
                 if (mAudioManager != null) {
@@ -245,7 +244,7 @@ public abstract class BaseMusicPlayer extends FrameLayout implements MediaPlayer
                 break;
             case CURRENT_STATE_ERROR:
                 if (isCurrentMediaListener()) {
-                    VideoManager.instance().releaseMediaPlayer();
+                    MusicManager.instance().releaseMediaPlayer();
                 }
                 break;
             case CURRENT_STATE_AUTO_COMPLETE:
@@ -267,11 +266,11 @@ public abstract class BaseMusicPlayer extends FrameLayout implements MediaPlayer
                 startButtonLogic();
             }
             if (mCurrentState == CURRENT_STATE_PLAYING) {
-                VideoManager.instance().getMediaPlayer().pause();
+                MusicManager.instance().getMediaPlayer().pause();
                 setState(CURRENT_STATE_PAUSE);
 
             } else if (mCurrentState == CURRENT_STATE_PAUSE) {
-                VideoManager.instance().getMediaPlayer().start();
+                MusicManager.instance().getMediaPlayer().start();
                 setState(CURRENT_STATE_PLAYING);
             } else if (mCurrentState == CURRENT_STATE_AUTO_COMPLETE) {
                 startButtonLogic();
@@ -293,16 +292,16 @@ public abstract class BaseMusicPlayer extends FrameLayout implements MediaPlayer
      * 开始状态视频播放
      */
     protected void prepareVideo() {
-        if (VideoManager.instance().listener() != null) {
-            VideoManager.instance().listener().onCompletion();
+        if (MusicManager.instance().listener() != null) {
+            MusicManager.instance().listener().onCompletion();
         }
-        VideoManager.instance().setListener(this);
-        VideoManager.instance().setPlayTag(mPlayTag);
-        VideoManager.instance().setPlayPosition(mPlayPosition);
+        MusicManager.instance().setListener(this);
+        MusicManager.instance().setPlayTag(mPlayTag);
+        MusicManager.instance().setPlayPosition(mPlayPosition);
         mAudioManager.requestAudioFocus(onAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
         ((Activity) getContext()).getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         mBackUpPlayingBufferState = -1;
-        VideoManager.instance().prepare(mUrl, mMapHeadData, mLooping, mSpeed);
+        MusicManager.instance().prepare(mUrl, mMapHeadData, mLooping, mSpeed);
         setState(CURRENT_STATE_PREPAREING);
     }
 
@@ -324,8 +323,8 @@ public abstract class BaseMusicPlayer extends FrameLayout implements MediaPlayer
                     });
                     break;
                 case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
-                    if (VideoManager.instance().getMediaPlayer().isPlaying()) {
-                        VideoManager.instance().getMediaPlayer().pause();
+                    if (MusicManager.instance().getMediaPlayer().isPlaying()) {
+                        MusicManager.instance().getMediaPlayer().pause();
                     }
                     break;
                 case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
@@ -347,12 +346,12 @@ public abstract class BaseMusicPlayer extends FrameLayout implements MediaPlayer
      */
     @Override
     public void onPause() {
-        if (VideoManager.instance().getMediaPlayer().isPlaying()) {
+        if (MusicManager.instance().getMediaPlayer().isPlaying()) {
             setState(CURRENT_STATE_PAUSE);
             mPauseTime = System.currentTimeMillis();
-            mCurrentPosition = VideoManager.instance().getMediaPlayer().getCurrentPosition();
-            if (VideoManager.instance().getMediaPlayer() != null)
-                VideoManager.instance().getMediaPlayer().pause();
+            mCurrentPosition = MusicManager.instance().getMediaPlayer().getCurrentPosition();
+            if (MusicManager.instance().getMediaPlayer() != null)
+                MusicManager.instance().getMediaPlayer().pause();
         }
     }
 
@@ -363,10 +362,10 @@ public abstract class BaseMusicPlayer extends FrameLayout implements MediaPlayer
     public void onResume() {
         mPauseTime = 0;
         if (mCurrentState == CURRENT_STATE_PAUSE) {
-            if (mCurrentPosition > 0 && VideoManager.instance().getMediaPlayer() != null) {
+            if (mCurrentPosition > 0 && MusicManager.instance().getMediaPlayer() != null) {
                 setState(CURRENT_STATE_PLAYING);
-                VideoManager.instance().getMediaPlayer().seekTo(mCurrentPosition);
-                VideoManager.instance().getMediaPlayer().start();
+                MusicManager.instance().getMediaPlayer().seekTo(mCurrentPosition);
+                MusicManager.instance().getMediaPlayer().start();
             }
         }
     }
@@ -383,10 +382,10 @@ public abstract class BaseMusicPlayer extends FrameLayout implements MediaPlayer
      */
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        if (VideoManager.instance().getMediaPlayer() != null && mHadPlay) {
+        if (MusicManager.instance().getMediaPlayer() != null && mHadPlay) {
             try {
                 int time = seekBar.getProgress() * getDuration() / 100;
-                VideoManager.instance().getMediaPlayer().seekTo(time);
+                MusicManager.instance().getMediaPlayer().seekTo(time);
             } catch (Exception e) {
                 Log.d(TAG, "onStopTrackingTouch: "+e.toString());
             }
@@ -397,16 +396,16 @@ public abstract class BaseMusicPlayer extends FrameLayout implements MediaPlayer
     public void onPrepared() {
         if (mCurrentState != CURRENT_STATE_PREPAREING) return;
 
-        if (VideoManager.instance().getMediaPlayer() != null) {
-            VideoManager.instance().getMediaPlayer().start();
+        if (MusicManager.instance().getMediaPlayer() != null) {
+            MusicManager.instance().getMediaPlayer().start();
         }
 
         startProgressTimer();
 
         setState(CURRENT_STATE_PLAYING);
 
-        if (VideoManager.instance().getMediaPlayer() != null && mSeekOnStart > 0) {
-            VideoManager.instance().getMediaPlayer().seekTo(mSeekOnStart);
+        if (MusicManager.instance().getMediaPlayer() != null && mSeekOnStart > 0) {
+            MusicManager.instance().getMediaPlayer().seekTo(mSeekOnStart);
             mSeekOnStart = 0;
         }
 
@@ -471,12 +470,13 @@ public abstract class BaseMusicPlayer extends FrameLayout implements MediaPlayer
     }
 
 
+
     public void setSpeed(float speed) {
         this.mSpeed = speed;
-        if (VideoManager.instance().getMediaPlayer() != null
-                && VideoManager.instance().getMediaPlayer() instanceof IjkMediaPlayer) {
+        if (MusicManager.instance().getMediaPlayer() != null
+                && MusicManager.instance().getMediaPlayer() instanceof IjkMediaPlayer) {
             if (speed != 1 && speed > 0) {
-                ((IjkMediaPlayer) VideoManager.instance().getMediaPlayer()).setSpeed(speed);
+                ((IjkMediaPlayer) MusicManager.instance().getMediaPlayer()).setSpeed(speed);
             }
         }
     }
@@ -571,7 +571,7 @@ public abstract class BaseMusicPlayer extends FrameLayout implements MediaPlayer
         int position = 0;
         if (mCurrentState == CURRENT_STATE_PLAYING || mCurrentState == CURRENT_STATE_PAUSE) {
             try {
-                position = (int) VideoManager.instance().getMediaPlayer().getCurrentPosition();
+                position = (int) MusicManager.instance().getMediaPlayer().getCurrentPosition();
             } catch (IllegalStateException e) {
                 e.printStackTrace();
                 return position;
@@ -586,7 +586,7 @@ public abstract class BaseMusicPlayer extends FrameLayout implements MediaPlayer
     public int getDuration() {
         int duration = 0;
         try {
-            duration = (int) VideoManager.instance().getMediaPlayer().getDuration();
+            duration = (int) MusicManager.instance().getMediaPlayer().getDuration();
         } catch (IllegalStateException e) {
             e.printStackTrace();
             return duration;
@@ -629,14 +629,14 @@ public abstract class BaseMusicPlayer extends FrameLayout implements MediaPlayer
     }
 
     /**
-     * 页面销毁了记得调用是否所有的video
+     * 页面销毁了记得调用
      */
     public static void releaseAllMedia() {
         if (IF_RELEASE_WHEN_ON_PAUSE) {
-            if (VideoManager.instance().listener() != null) {
-                VideoManager.instance().listener().onCompletion();
+            if (MusicManager.instance().listener() != null) {
+                MusicManager.instance().listener().onCompletion();
             }
-            VideoManager.instance().releaseMediaPlayer();
+            MusicManager.instance().releaseMediaPlayer();
         } else {
             IF_RELEASE_WHEN_ON_PAUSE = true;
         }
@@ -652,8 +652,8 @@ public abstract class BaseMusicPlayer extends FrameLayout implements MediaPlayer
 
 
     protected boolean isCurrentMediaListener() {
-        return VideoManager.instance().listener() != null
-                && VideoManager.instance().listener() == this;
+        return MusicManager.instance().listener() != null
+                && MusicManager.instance().listener() == this;
     }
 
 
@@ -697,9 +697,9 @@ public abstract class BaseMusicPlayer extends FrameLayout implements MediaPlayer
      * 再打开已经缓存的本地文件，网络速度才会回0.因为是播放本地文件了
      */
     public long getNetSpeed() {
-        if (VideoManager.instance().getMediaPlayer() != null
-                && (VideoManager.instance().getMediaPlayer() instanceof IjkMediaPlayer)) {
-            return ((IjkMediaPlayer) VideoManager.instance().getMediaPlayer()).getTcpSpeed();
+        if (MusicManager.instance().getMediaPlayer() != null
+                && (MusicManager.instance().getMediaPlayer() instanceof IjkMediaPlayer)) {
+            return ((IjkMediaPlayer) MusicManager.instance().getMediaPlayer()).getTcpSpeed();
         } else {
             return -1;
         }

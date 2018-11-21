@@ -1,4 +1,4 @@
-package com.dusky.musicplayer.model;
+package com.dusky.duskyplayer.model;
 
 public class VideoModel {
 

@@ -1,4 +1,4 @@
-package com.dusky.musicplayer.utils;
+package com.dusky.duskyplayer.utils;
 
 import android.content.Context;
 import android.os.Environment;
