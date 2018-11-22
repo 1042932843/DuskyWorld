@@ -1,1 +1,1 @@
-include ':app', ':DuskyView', ':musicplayer'
+include ':app', ':DuskyView', ':duskyplayer'

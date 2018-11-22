@@ -10,7 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/DuskyView" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/musicplayer" />
+            <option value="$PROJECT_DIR$/duskyplayer" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

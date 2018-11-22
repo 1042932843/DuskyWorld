@@ -565,7 +565,7 @@ public abstract class ADVideoPlayer extends BaseADVideoPlayer implements Texture
 
 
     /**
-     * 页面销毁了记得调用是否所有的video
+     * 页面销毁了记得调用销毁video
      */
     public static void releaseAllVideos() {
         if (IF_RELEASE_WHEN_ON_PAUSE) {
