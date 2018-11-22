@@ -22,6 +22,7 @@ import com.dusky.world.R;
 import com.dusky.world.Utils.GlideTransformation.Reflected;
 import com.dusky.world.Utils.PreferenceUtil;
 import com.dusky.world.Utils.ToastUtil;
+import com.squareup.leakcanary.LeakCanary;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 import com.tencent.bugly.crashreport.CrashReport;
@@ -52,6 +53,13 @@ public class DuskyApp extends MultiDexApplication implements Application.Activit
     public void onCreate() {
         super.onCreate();
         mInstance = this;
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
+
         init();
         initBugly();
         registerActivityLifecycleCallbacks(this);

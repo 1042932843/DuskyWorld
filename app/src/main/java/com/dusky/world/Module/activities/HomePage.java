@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.dusky.duskyplayer.video.ADVideoPlayer;
 import com.dusky.world.Adapter.TooSimpleAdapter;
 import com.dusky.world.Adapter.WebBannerAdapter;
 import com.dusky.world.Adapter.fateAdapter;
