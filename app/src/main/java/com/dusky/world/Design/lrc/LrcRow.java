@@ -113,7 +113,7 @@ public class LrcRow implements Comparable<LrcRow> {
     /****
      * 把歌词时间转换为毫秒值  如 将00:10.00  转为10000
      *
-     * @param tem
+     * @param timeStr
      * @return
      */
     private static int formatTime(String timeStr) {

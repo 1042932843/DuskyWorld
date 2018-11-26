@@ -30,7 +30,7 @@ import java.util.List;
  * 2：歌词的水平滚动怎么实现？
  * 通过属性动画ValueAnimator控制高亮歌词绘制的x轴起始坐标
  *
- * @author Ligang  2014/8/19
+ * @author dsy  2018/11/26
  */
 public class LrcView extends View implements ILrcView {
     /**
