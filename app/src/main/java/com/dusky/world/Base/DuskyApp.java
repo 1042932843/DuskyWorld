@@ -30,6 +30,7 @@ import com.tencent.bugly.crashreport.CrashReport;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 
@@ -45,7 +46,7 @@ import java.util.ArrayList;
 public class DuskyApp extends MultiDexApplication implements Application.ActivityLifecycleCallbacks{
     public static DuskyApp mInstance;
     public static RequestOptions optionsRoundedCorners,optionsRoundedCircle,optionsReflected;
-    private ArrayList<Activity> activities=new ArrayList<>();
+    private ArrayList<WeakReference<Activity>> activities=new ArrayList<>();
     public static DuskyApp getInstance() {
         return mInstance;
     }
@@ -172,15 +173,11 @@ public class DuskyApp extends MultiDexApplication implements Application.Activit
     }
 
 
-    Activity contextActivity;
+
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-        activities.add(activity);
-        if(activity.getParent()!=null){
-            contextActivity = activity.getParent();
-        }else
-            contextActivity = activity;
-
+        WeakReference<Activity> activityWeakReference=new WeakReference<Activity>(activity);
+        activities.add(activityWeakReference);
     }
 
     @Override
@@ -210,14 +207,14 @@ public class DuskyApp extends MultiDexApplication implements Application.Activit
 
     @Override
     public void onActivityDestroyed(Activity activity) {
-
+        activities.remove(activity);
     }
 
     public void Exit(){
         int size=activities.size();
         for(int i=0;i<size;i++){
             if(activities.get(i)!=null){
-                activities.get(i).finish();
+                 activities.get(i).get().finish();
             }
         }
     }

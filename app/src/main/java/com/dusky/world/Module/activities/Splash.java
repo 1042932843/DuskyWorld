@@ -69,27 +69,11 @@ public class Splash extends BaseActivity {
                 .compose(this.bindToLifecycle())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
-                    //dimBackground(1f,0f);
                     startActivity(new Intent(this,HomePage.class));
                     finish();
                 });
 
 
-    }
-    private void dimBackground(final float from, final float to) {
-        final Window window = getWindow();
-        ValueAnimator valueAnimator = ValueAnimator.ofFloat(from, to);
-        valueAnimator.setDuration(500);
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                WindowManager.LayoutParams params = window.getAttributes();
-                params.alpha = (Float) animation.getAnimatedValue();
-                window.setAttributes(params);
-            }
-        });
-
-        valueAnimator.start();
     }
 
     @Override
