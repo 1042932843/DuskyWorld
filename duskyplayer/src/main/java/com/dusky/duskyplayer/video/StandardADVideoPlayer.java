@@ -64,6 +64,7 @@ public class StandardADVideoPlayer extends ADVideoPlayer {
     @Override
     public void startPlayLogic() {
         prepareVideo();
+        setNeedMute(true);//设置静音视频
     }
 
 

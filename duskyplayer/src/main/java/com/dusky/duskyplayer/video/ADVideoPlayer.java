@@ -27,7 +27,6 @@ import com.dusky.duskyplayer.utils.StorageUtils;
 import java.io.File;
 import java.util.Map;
 import java.util.Timer;
-import java.util.TimerTask;
 
 import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.IjkLibLoader;
@@ -578,6 +577,12 @@ public abstract class ADVideoPlayer extends BaseADVideoPlayer implements Texture
         }
     }
 
+    /**
+     * 是否需要静音
+     */
+    public void setNeedMute(boolean needMute) {
+        VideoManager.instance().setNeedMute(needMute);
+    }
 
 
     protected boolean isCurrentMediaListener() {
