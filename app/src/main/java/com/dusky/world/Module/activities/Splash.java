@@ -71,7 +71,6 @@ public class Splash extends BaseActivity {
                 .subscribe(aLong -> {
                     //dimBackground(1f,0f);
                     startActivity(new Intent(this,HomePage.class));
-                    //ADVideoPlayer.releaseAllVideos();//清除广告页视频
                     finish();
                 });
 
@@ -93,4 +92,10 @@ public class Splash extends BaseActivity {
         valueAnimator.start();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        video_player=null;
+        ADVideoPlayer.releaseAllVideos();
+    }
 }
