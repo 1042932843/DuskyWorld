@@ -41,18 +41,18 @@ import static com.dusky.duskyplayer.utils.CommonUtil.hideNavKey;
  * 标准播放器
  */
 
-public class StandardADVideoPlayer extends ADVideoPlayer {
+public class EmptyADVideoPlayer extends ADVideoPlayer {
 
 
-    public StandardADVideoPlayer(Context context) {
+    public EmptyADVideoPlayer(Context context) {
         super(context);
     }
 
-    public StandardADVideoPlayer(Context context, IjkLibLoader ijkLibLoader) {
+    public EmptyADVideoPlayer(Context context, IjkLibLoader ijkLibLoader) {
         super(context, ijkLibLoader);
     }
 
-    public StandardADVideoPlayer(Context context, AttributeSet attrs) {
+    public EmptyADVideoPlayer(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 

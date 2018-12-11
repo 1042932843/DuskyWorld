@@ -34,7 +34,7 @@ import tv.danmaku.ijk.media.player.IjkLibLoader;
 
 public abstract class ADVideoPlayer extends BaseADVideoPlayer implements TextureView.SurfaceTextureListener {
 
-    public static final String TAG = "VideoPlayer";
+    public static final String TAG = ADVideoPlayer.class.getSimpleName();
 
 
     public static final int CURRENT_STATE_NORMAL = 0; //正常
@@ -45,15 +45,12 @@ public abstract class ADVideoPlayer extends BaseADVideoPlayer implements Texture
     public static final int CURRENT_STATE_AUTO_COMPLETE = 6; //自动播放结束
     public static final int CURRENT_STATE_ERROR = 7; //错误状态
 
-    public static final int FULL_SCREEN_NORMAL_DELAY = 2000;
-
     protected static int mBackUpPlayingBufferState = -1;
 
     protected static boolean IF_FULLSCREEN_FROM_NORMAL = false;
 
     public static boolean IF_RELEASE_WHEN_ON_PAUSE = true;
 
-    protected Timer UPDATE_PROGRESS_TIMER;
 
     protected Surface mSurface;
 
@@ -63,53 +60,21 @@ public abstract class ADVideoPlayer extends BaseADVideoPlayer implements Texture
 
     protected String mPlayTag = ""; //播放的tag，防止错误，因为普通的url也可能重复
 
-    protected Matrix mTransformCover = null;
 
     protected int mPlayPosition = -22; //播放的tag，防止错误，因为普通的url也可能重复
 
-    protected float mDownX;//触摸的X
-
-    protected float mDownY; //触摸的Y
-
-    protected float mMoveY;
-
-    protected float mBrightnessData = -1; //亮度
-
-    protected int mDownPosition; //手指放下的位置
-
-    protected int mGestureDownVolume; //手势调节音量的大小
 
     protected int mScreenWidth; //屏幕宽度
 
     protected int mScreenHeight; //屏幕高度
 
-    protected int mThreshold = 80; //手势偏差值
 
     protected int mSeekToInAdvance = -1;
 
     protected int mBuffterPoint;//缓存进度
 
-    protected int mSeekTimePosition; //手动改变滑动的位置
-
-    protected int mSeekEndOffset; //手动滑动的起始偏移位置
-
     protected long mSeekOnStart = -1; //从哪个开始播放
 
-    protected long mPauseTime; //保存暂停时的时间
-
-    protected long mCurrentPosition; //当前的播放位置
-
-    protected boolean mTouchingProgressBar = false;
-
-    protected boolean mChangeVolume = false;//是否改变音量
-
-    protected boolean mChangePosition = false;//是否改变播放进度
-
-    protected boolean mShowVKey = false; //触摸显示虚拟按键
-
-    protected boolean mBrightness = false;//是否改变亮度
-
-    protected boolean mFirstTouch = false;//是否首次触摸
 
 
     /**
