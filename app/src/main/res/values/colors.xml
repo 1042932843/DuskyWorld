@@ -44,7 +44,7 @@
     <color name="gray_light">#dcdcdc</color>
 
     <color name="mygray">#0A0A0A</color>
-    <color name="mybg_light">#2B2B2B</color>
+    <color name="mybg_light">#2B2B2C</color>
     <color name="transparent">#00000000</color>
     <color name="colorText">#999999</color>
     <color name="colorHint">#70999999</color>

@@ -23,7 +23,7 @@
             app:titleEnabled="false"
             app:contentScrim="@color/mybg_light"
             app:statusBarScrim="@android:color/transparent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
 
             <RelativeLayout
@@ -174,23 +174,18 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView_homepage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:scrollbarThumbVertical="@color/mybg_light"
+        android:scrollbarSize="4dp"
         android:background="@color/transparent"
         android:overScrollMode="never"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
 
-        <include layout="@layout/activity_homepage_hot"/>
-        <include layout="@layout/activity_homepage_fate"/>
-        <include layout="@layout/activity_homepage_toosimple"/>
-
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </android.support.v7.widget.RecyclerView>
 
 </android.support.design.widget.CoordinatorLayout>

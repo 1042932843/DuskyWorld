@@ -1,25 +1,19 @@
 package com.dusky.world.Module.activities;
 
-import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
-import android.os.Environment;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.dusky.duskyplayer.video.ADVideoPlayer;
-import com.dusky.duskyplayer.video.StandardADVideoPlayer;
+import com.dusky.duskyplayer.video.EmptyADVideoPlayer;
 import com.dusky.world.Base.BaseActivity;
 import com.dusky.world.R;
 
-import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
@@ -44,7 +38,7 @@ public class Splash extends BaseActivity {
     }
 
     @BindView(R.id.video_player)
-    StandardADVideoPlayer video_player;
+    EmptyADVideoPlayer video_player;
 
     @Override
     public int getLayoutId() {

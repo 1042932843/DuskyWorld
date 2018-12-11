@@ -1,35 +1,28 @@
 package com.dusky.world.Module.activities;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.MultiTransformation;
-import com.bumptech.glide.load.resource.bitmap.CircleCrop;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.dusky.duskyplayer.video.ADVideoPlayer;
-import com.dusky.world.Adapter.TooSimpleAdapter;
+import com.dusky.world.Adapter.HomePageAdapter;
 import com.dusky.world.Adapter.WebBannerAdapter;
-import com.dusky.world.Adapter.fateAdapter;
 import com.dusky.world.Design.helper.CircleCropBorder;
 import com.dusky.world.Design.helper.EndlessRecyclerOnScrollListener;
 import com.dusky.world.Base.BaseActivity;
 import com.dusky.world.Base.DuskyApp;
+import com.dusky.world.Module.entity.DefaultType;
+import com.dusky.world.Module.entity.HomePageData;
 import com.dusky.world.Module.entity.TooSimple;
+import com.dusky.world.Module.entity.User;
 import com.dusky.world.R;
 import com.dusky.world.Utils.CommonUtil;
 import com.dusky.world.Utils.ToastUtil;
@@ -38,15 +31,9 @@ import com.nbsix.dsy.bannerview.BannerView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import jp.wasabeef.glide.transformations.BlurTransformation;
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
-import jp.wasabeef.glide.transformations.gpu.SketchFilterTransformation;
 
 import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 
@@ -55,9 +42,6 @@ public class HomePage extends BaseActivity {
     @BindView(R.id.banner)
     BannerView bannerView;
     WebBannerAdapter webBannerAdapter;
-
-    //@BindView(R.id.recyclerView)
-    //RecyclerView recyclerView;
 
     private EndlessRecyclerOnScrollListener mEndlessRecyclerOnScrollListener;
     private boolean mIsRefreshing = false;
@@ -81,10 +65,8 @@ public class HomePage extends BaseActivity {
     @BindView(R.id.msg_layout)
     RelativeLayout msg_layout;
 
-    @BindView(R.id.recyclerView_fate)
-    RecyclerView recyclerView_fate;
-    @BindView(R.id.recyclerView_tooSimple)
-    RecyclerView recyclerView_tooSimple;
+    @BindView(R.id.recyclerView_homepage)
+    RecyclerView recyclerView;
 
     @OnClick(R.id.set)
     public void goset(){
@@ -116,63 +98,7 @@ public class HomePage extends BaseActivity {
     }
 
 
-    public void setFate(){
-        fateAdapter fateAdapter=new fateAdapter(HomePage.this);
 
-        GridLayoutManager layoutManage = new GridLayoutManager(this, 3){
-            @Override
-            public void onMeasure(RecyclerView.Recycler recycler, RecyclerView.State state, int widthSpec, int heightSpec) {
-                if (getChildCount() > 0) {
-                    View firstChildView = recycler.getViewForPosition(0);
-                    measureChild(firstChildView, widthSpec, heightSpec);
-                    setMeasuredDimension(View.MeasureSpec.getSize(widthSpec), firstChildView.getMeasuredHeight());
-                } else {
-                    super.onMeasure(recycler, state, widthSpec, heightSpec);
-                }
-            }
-
-        };
-        recyclerView_fate.setLayoutManager(layoutManage);
-        recyclerView_fate.setAdapter(fateAdapter);
-        recyclerView_fate.setNestedScrollingEnabled(false);
-
-    }
-
-    private int setSpanSize(int position, List<TooSimple> tooSimples) {
-
-        return tooSimples.get(position).getSpanCount();
-    }
-
-    public void setTooSimple(){
-        TooSimpleAdapter tooSimpleAdapter=new TooSimpleAdapter(HomePage.this);
-
-        GridLayoutManager layoutManage = new GridLayoutManager(this, 2){
-            @Override
-            public void onMeasure(RecyclerView.Recycler recycler, RecyclerView.State state, int widthSpec, int heightSpec) {
-                if (getChildCount() > 0) {
-                    View firstChildView = recycler.getViewForPosition(0);
-                    measureChild(firstChildView, widthSpec, heightSpec);
-                    setMeasuredDimension(View.MeasureSpec.getSize(widthSpec), firstChildView.getMeasuredHeight());
-                } else {
-                    super.onMeasure(recycler, state, widthSpec, heightSpec);
-                }
-            }
-
-        };
-        layoutManage.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int position) {
-                return setSpanSize(position,tooSimpleAdapter.getList());
-            }
-        });
-
-
-
-        recyclerView_tooSimple.setLayoutManager(layoutManage);
-        recyclerView_tooSimple.setAdapter(tooSimpleAdapter);
-        recyclerView_tooSimple.setNestedScrollingEnabled(false);
-
-    }
 
 
     @SuppressLint("CheckResult")
@@ -194,8 +120,6 @@ public class HomePage extends BaseActivity {
 
         setBadge();
         loadData();
-        setFate();
-        setTooSimple();
         List<String> list = new ArrayList<>();
         list.add("http://img0.imgtn.bdimg.com/it/u=1352823040,1166166164&fm=27&gp=0.jpg");
         list.add("http://img3.imgtn.bdimg.com/it/u=2293177440,3125900197&fm=27&gp=0.jpg");
@@ -225,6 +149,27 @@ public class HomePage extends BaseActivity {
             }
         });
         bannerView.setAdapter(webBannerAdapter);
+        HomePageData homePageData=new HomePageData();
+        homePageData.setHotShow(true);
+        homePageData.setHotPosition(0);
+        homePageData.setFateShow(true);
+        homePageData.setFatePosition(1);
+        homePageData.setTooSimpleShow(true);
+        homePageData.setTooSimplePosition(2);
+        ArrayList<DefaultType> defaultTypeArrayList=new ArrayList<>();
+        for (int i=0;i<10;i++){
+            User user=new User("dusky","10423932843","http://img4.imgtn.bdimg.com/it/u=1243617734,335916716&fm=27&gp=0.jpg","500");
+            int s=1;
+            if(i==2){
+                s=2;
+            }
+            defaultTypeArrayList.add(new DefaultType(user,"http://img3.imgtn.bdimg.com/it/u=2293177440,3125900197&fm=27&gp=0.jpg","十二月份图集"+i,i+"人看过",s));
+        }
+        homePageData.setDefaultTypes(defaultTypeArrayList);
+        HomePageAdapter homePageAdapter=new HomePageAdapter(this,homePageData);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(homePageAdapter);
+
     }
 
     private long exitTime=0;

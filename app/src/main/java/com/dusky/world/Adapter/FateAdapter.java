@@ -9,25 +9,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.dusky.world.Base.DuskyApp;
 import com.dusky.world.Module.entity.Fate;
 import com.dusky.world.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @AUTHOR: dsy
  * @TIME: 2018/9/30
  * @DESCRIPTION:
  */
-public class fateAdapter extends RecyclerView.Adapter<fateAdapter.ViewHolder>{
+public class FateAdapter extends RecyclerView.Adapter<FateAdapter.ViewHolder>{
 
     private LayoutInflater mInflater;
     private ArrayList<Fate> fate=new ArrayList<>();
     Context context;
 
-    public fateAdapter(Context context){
+    public FateAdapter(Context context){
         this.context=context;
         this.mInflater=LayoutInflater.from(context);
         for (int i=0;i<3;i++){

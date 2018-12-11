@@ -69,10 +69,7 @@ public class TooSimpleAdapter extends RecyclerView.Adapter<TooSimpleAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Glide.with(context).load(tooSimples.get(position).getImgUrl()).into(holder.img);
-        MultiTransformation multi = new MultiTransformation(new CircleCropBorder(2,context.getResources().getColor(R.color.gray)));
-        Glide.with(context).load(tooSimples.get(position).getUser().getAvatar()).apply(bitmapTransform(multi)).into(holder.user_avatar);
         holder.title.setText(""+tooSimples.get(position).getTitle());
-        holder.user_name.setText(""+tooSimples.get(position).getUser().getNickname());
         //holder.num.setText(""+fate.get(position).getExpNum());
     }
 
@@ -83,15 +80,13 @@ public class TooSimpleAdapter extends RecyclerView.Adapter<TooSimpleAdapter.View
 
     //自定义的ViewHolder，持有每个Item的的所有界面元素
     class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView img,user_avatar;
-        TextView title,num,user_name;
+        ImageView img;
+        TextView title,num;
         ViewHolder(View view){
             super(view);
             img = (ImageView)view.findViewById(R.id.img);
-            user_avatar = (ImageView)view.findViewById(R.id.user_avatar);
             title = (TextView)view.findViewById(R.id.title);
             //num = (TextView)view.findViewById(R.id.num);
-            user_name = (TextView)view.findViewById(R.id.user_name);
         }
     }
 }

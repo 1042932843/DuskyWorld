@@ -59,7 +59,7 @@ public class DuskyApp extends MultiDexApplication implements Application.Activit
             // You should not init your app in this process.
             return;
         }
-        LeakCanary.install(this);
+        //LeakCanary.install(this);
 
         init();
         initBugly();

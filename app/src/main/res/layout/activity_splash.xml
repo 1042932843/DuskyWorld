@@ -11,11 +11,11 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"/>
 
-    <com.dusky.duskyplayer.video.StandardADVideoPlayer
+    <com.dusky.duskyplayer.video.EmptyADVideoPlayer
         android:id="@+id/video_player"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </com.dusky.duskyplayer.video.StandardADVideoPlayer>
+    </com.dusky.duskyplayer.video.EmptyADVideoPlayer>
 
     <TextView
         android:id="@+id/jump"

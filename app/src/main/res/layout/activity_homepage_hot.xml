@@ -3,7 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="@dimen/dp_12"
+    android:paddingStart="@dimen/dp_12"
+    android:paddingEnd="@dimen/dp_12"
+    android:paddingTop="@dimen/dp_12"
+    android:paddingBottom="@dimen/dp_12"
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="近期更新"
+            android:text="近期更新 >"
             android:layout_alignParentEnd="true"
             android:textColor="@color/colorText"
             android:layout_centerVertical="true"
