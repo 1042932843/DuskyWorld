@@ -78,6 +78,18 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
+    public void Refresh(int start,int range){
+        if (data.isHotShow()) {
+            start=start+1;
+        }
+        if (data.isFateShow()) {
+            start=start+1;
+        }
+        if (data.isTooSimpleShow()) {
+            start=start+1;
+        }
+        this.notifyItemRangeChanged(start,range);
+    }
 
     @Override
     public int getItemCount() {

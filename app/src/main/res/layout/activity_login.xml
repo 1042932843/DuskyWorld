@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/mybg_light"
+            app:elevation="@dimen/dp_0">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:titleTextAppearance="@dimen/sp_16"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+
+        </android.support.design.widget.AppBarLayout>
+        <LinearLayout
+            android:id="@+id/login_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_8">
+
+            <com.dusky.world.Design.keyEditText.KeyEditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_edit_text_default"
+                android:drawablePadding="@dimen/dp_8"
+                android:hint="@string/username_"
+                android:textColorHint="@color/gray_dark"
+                android:textColor="@color/gray_light"
+                android:maxLines="1"
+                android:padding="@dimen/dp_8"
+                android:textCursorDrawable="@drawable/edittext_cursor"
+                android:textSize="@dimen/sp_12"
+                app:backgroundTint="@color/colorPrimary"
+                />
+
+            <com.dusky.world.Design.keyEditText.KeyEditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                android:background="@drawable/ic_edit_text_default"
+                android:drawablePadding="@dimen/dp_8"
+                android:hint="@string/password_"
+                android:textColorHint="@color/gray_dark"
+                android:textColor="@color/gray_light"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:padding="@dimen/dp_8"
+                android:textCursorDrawable="@drawable/edittext_cursor"
+                android:textSize="@dimen/sp_12"
+                app:backgroundTint="@color/colorPrimary"
+                />
+
+            <Button
+                android:id="@+id/login_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                android:background="@drawable/selector_login"
+                android:enabled="false"
+                android:gravity="center"
+                android:text="@string/login_"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/sp_12" />
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/user_agreement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawablePadding="@dimen/dp_8"
+                android:gravity="center_vertical"
+                android:layout_alignParentStart="true"
+                android:padding="@dimen/dp_8"
+                android:text="@string/login_error"
+                android:textColor="@color/colorText"
+                android:textSize="@dimen/sp_12" />
+
+            <TextView
+                android:id="@+id/user_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawablePadding="@dimen/dp_8"
+                android:gravity="center_vertical"
+                android:layout_alignParentEnd="true"
+                android:padding="@dimen/dp_8"
+                android:text="@string/register_"
+                android:textColor="@color/selector_text"
+                android:textSize="@dimen/sp_12" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">DW</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_error">无法登录?</string>
+    <string name="register_">申请注册</string>
+    <string name="login_">登 录</string>
+    <string name="username_">用户名/邮箱/手机号</string>
+    <string name="password_">密 码</string>
+    <string name="direct_messages">私信</string>
+    <string name="get_in">上车</string>
+    <string name="tip">没有钱啊,肯定要做啊,不做没有钱用,打工是不可能打工的,这辈子不可能打工的,做生意又不会做,就是写这种东西,才能维持的了生活这样子…</string>
+    <string name="lv">Lv.0</string>
 </resources>

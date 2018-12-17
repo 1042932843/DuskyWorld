@@ -21,7 +21,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.dusky.world.Module.activities.Splash">
+        <activity android:name="com.dusky.world.Module.activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,6 +34,8 @@
             android:theme="@android:style/Theme.Translucent" />
         <activity android:name=".Module.activities.HomePage" />
         <activity android:name=".Module.activities.MusicActivity" />
+        <activity android:name=".Module.activities.LoginActivity" />
+        <activity android:name=".Module.activities.UserInfoActivity" />
         <!-- bugly -->
         <provider
             android:name="android.support.v4.content.FileProvider"

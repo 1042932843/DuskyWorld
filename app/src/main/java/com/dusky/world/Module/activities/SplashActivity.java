@@ -22,8 +22,8 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
 
-public class Splash extends BaseActivity {
-    int time=3000;
+public class SplashActivity extends BaseActivity {
+    int time=5000;
 
     @BindView(R.id.splash)
     ImageView splash;
@@ -48,9 +48,9 @@ public class Splash extends BaseActivity {
     @SuppressLint("CheckResult")
     @Override
     protected void init(Bundle savedInstanceState) {
-        String source1 = "https://github.com/1042932843/img-folder/blob/master/adtest.mp4";
+        String source1 = "https://raw.githubusercontent.com/1042932843/img-folder/master/adtest.mp4";
 
-        source1="file://"+"/storage/emulated/0/Movies/Screenrecords/S81122-16271597.mp4";
+        //source1="file://"+"/storage/emulated/0/Movies/Screenrecords/S81122-16271597.mp4";
         //增加title
         if(!TextUtils.isEmpty(source1)){
             video_player.setUp(source1,true,"");

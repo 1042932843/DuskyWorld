@@ -21,7 +21,6 @@ import com.dusky.world.Base.BaseActivity;
 import com.dusky.world.Base.DuskyApp;
 import com.dusky.world.Module.entity.DefaultType;
 import com.dusky.world.Module.entity.HomePageData;
-import com.dusky.world.Module.entity.TooSimple;
 import com.dusky.world.Module.entity.User;
 import com.dusky.world.R;
 import com.dusky.world.Utils.CommonUtil;
@@ -31,9 +30,12 @@ import com.nbsix.dsy.bannerview.BannerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 
@@ -42,11 +44,25 @@ public class HomePage extends BaseActivity {
     @BindView(R.id.banner)
     BannerView bannerView;
     WebBannerAdapter webBannerAdapter;
+    HomePageAdapter homePageAdapter;
+    ArrayList<DefaultType> defaultTypeArrayList;
 
     private EndlessRecyclerOnScrollListener mEndlessRecyclerOnScrollListener;
     private boolean mIsRefreshing = false;
     private int pageNum = 1;
     private int pageSize = 10;
+
+    @OnClick(R.id.group_user)
+    public void OnClickGroupUser(){
+        Intent it;
+        boolean islogin=false;
+        if(islogin){
+            it=new Intent(HomePage.this,LoginActivity.class);
+        }else{
+            it=new Intent(HomePage.this,UserInfoActivity.class);
+        }
+        startActivity(it);
+    }
 
     @BindView(R.id.set)
     ImageView set;
@@ -107,6 +123,18 @@ public class HomePage extends BaseActivity {
         Glide.with(HomePage.this).load(R.drawable.banner).apply(bitmapTransform(multi)).into(user_avatar);
     }
 
+    public void loadListData(){
+        for (int i=0;i<10;i++){
+            User user=new User("dusky","10423932843","http://img4.imgtn.bdimg.com/it/u=1243617734,335916716&fm=27&gp=0.jpg","500");
+            int s=1;
+            if(i==2){
+                s=2;
+            }
+            defaultTypeArrayList.add(new DefaultType(user,"http://img3.imgtn.bdimg.com/it/u=2293177440,3125900197&fm=27&gp=0.jpg","十二月份图集"+i,i+"人看过",s));
+        }
+        homePageAdapter.Refresh(pageNum*pageSize,pageNum);
+    }
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_homepage;
@@ -156,7 +184,7 @@ public class HomePage extends BaseActivity {
         homePageData.setFatePosition(1);
         homePageData.setTooSimpleShow(true);
         homePageData.setTooSimplePosition(2);
-        ArrayList<DefaultType> defaultTypeArrayList=new ArrayList<>();
+        defaultTypeArrayList=new ArrayList<>();
         for (int i=0;i<10;i++){
             User user=new User("dusky","10423932843","http://img4.imgtn.bdimg.com/it/u=1243617734,335916716&fm=27&gp=0.jpg","500");
             int s=1;
@@ -166,9 +194,24 @@ public class HomePage extends BaseActivity {
             defaultTypeArrayList.add(new DefaultType(user,"http://img3.imgtn.bdimg.com/it/u=2293177440,3125900197&fm=27&gp=0.jpg","十二月份图集"+i,i+"人看过",s));
         }
         homePageData.setDefaultTypes(defaultTypeArrayList);
-        HomePageAdapter homePageAdapter=new HomePageAdapter(this,homePageData);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        homePageAdapter=new HomePageAdapter(this,homePageData);
+        LinearLayoutManager layoutManager=new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(homePageAdapter);
+        mEndlessRecyclerOnScrollListener =new EndlessRecyclerOnScrollListener(layoutManager) {
+            @SuppressLint("CheckResult")
+            @Override
+            public void onLoadMore(int currentPage) {
+                Observable.timer(1000, TimeUnit.MILLISECONDS)
+                        .compose(HomePage.this.bindToLifecycle())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(aLong -> {
+                            pageNum++;
+                            loadListData();
+                        });
+            }
+        };
+        recyclerView.addOnScrollListener(mEndlessRecyclerOnScrollListener);
 
     }
 
