@@ -16,32 +16,65 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 
+import com.bumptech.glide.Glide;
 import com.dusky.world.Base.BaseActivity;
+import com.dusky.world.Base.DuskyApp;
 import com.dusky.world.Design.MusicPlayer.AlbumViewPager;
 import com.dusky.world.Design.MusicPlayer.PlayerSeekBar;
 import com.dusky.world.Design.lrc.LrcView;
+import com.dusky.world.Module.entity.MusicInfo;
 import com.dusky.world.Module.fragment.PlayQueueFragment;
 import com.dusky.world.R;
+
+import butterknife.BindView;
 
 
 /**
  * Created by wm on 2016/2/21.
  */
 public class MusicActivity extends BaseActivity{
-    private ImageView mBackAlbum, mPlayingmode, mControl, mNext, mPre, mPlaylist, mCmt, mFav, mDown, mMore, mNeedle;
-    private TextView mTimePlayed, mDuration;
-    private PlayerSeekBar mProgress;
+
+
+    MusicInfo  musicInfo;
+
+    @BindView(R.id.tragetlrc)
+    TextView mTryGetLrc;
+    @BindView(R.id.music_duration_played)
+    TextView mTimePlayed;
+    @BindView(R.id.music_duration)
+    TextView mDuration;
+    @BindView(R.id.playing_playlist)
+    ImageView mPlaylist;
+    @BindView(R.id.playing_mode)
+    ImageView mPlayingmode;
+    @BindView(R.id.playing_play)
+    ImageView mControl;
+    @BindView(R.id.playing_next)
+    ImageView mNext;
+    @BindView(R.id.playing_pre)
+    ImageView mPre;
+
+    @BindView(R.id.albumArt)
+    ImageView mBackAlbum;
+    @BindView(R.id.needle)
+    ImageView mNeedle;
+    @BindView(R.id.headerView)
+    FrameLayout mAlbumLayout;
+    @BindView(R.id.lrcviewContainer)
+    RelativeLayout mLrcViewContainer;
+    @BindView(R.id.music_tool)
+    LinearLayout mMusicTool;
+    @BindView(R.id.lrcview)
+    LrcView mLrcView;
+    @BindView(R.id.volume_seek)
+    SeekBar mVolumeSeek;
+    @BindView(R.id.play_seek)
+    PlayerSeekBar mProgress;
+    @BindView(R.id.view_pager)
+    AlbumViewPager mViewPager;
 
     private ObjectAnimator mNeedleAnim, mRotateAnim;
     private AnimatorSet mAnimatorSet;
-    private AlbumViewPager mViewPager;
-
-    private FrameLayout mAlbumLayout;
-    private RelativeLayout mLrcViewContainer;
-    private LrcView mLrcView;
-    private TextView mTryGetLrc;
-    private LinearLayout mMusicTool;
-    private SeekBar mVolumeSeek;
     private String TAG = MusicActivity.class.getSimpleName();
 
 
@@ -49,36 +82,13 @@ public class MusicActivity extends BaseActivity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music);
-
-
-        mAlbumLayout = (FrameLayout) findViewById(R.id.headerView);
-        mLrcViewContainer = (RelativeLayout) findViewById(R.id.lrcviewContainer);
-        mLrcView = (LrcView) findViewById(R.id.lrcview);
-        mTryGetLrc = (TextView) findViewById(R.id.tragetlrc);
-        mMusicTool = (LinearLayout) findViewById(R.id.music_tool);
-
-        mBackAlbum = (ImageView) findViewById(R.id.albumArt);
-        mPlayingmode = (ImageView) findViewById(R.id.playing_mode);
-        mControl = (ImageView) findViewById(R.id.playing_play);
-        mNext = (ImageView) findViewById(R.id.playing_next);
-        mPre = (ImageView) findViewById(R.id.playing_pre);
-        mPlaylist = (ImageView) findViewById(R.id.playing_playlist);
-        mMore = (ImageView) findViewById(R.id.playing_more);
-        mCmt = (ImageView) findViewById(R.id.playing_cmt);
-        mFav = (ImageView) findViewById(R.id.playing_fav);
-        mDown = (ImageView) findViewById(R.id.playing_down);
-        mTimePlayed = (TextView) findViewById(R.id.music_duration_played);
-        mDuration = (TextView) findViewById(R.id.music_duration);
-        mProgress = (PlayerSeekBar) findViewById(R.id.play_seek);
-        mNeedle = (ImageView) findViewById(R.id.needle);
-        mViewPager = (AlbumViewPager) findViewById(R.id.view_pager);
-
+        musicInfo= getIntent().getParcelableExtra("music");
+        Glide.with(this).load(musicInfo.albumData).into(mBackAlbum);
         mNeedleAnim = ObjectAnimator.ofFloat(mNeedle, "rotation", -25, 0);
         mNeedleAnim.setDuration(200);
         mNeedleAnim.setRepeatMode(ValueAnimator.RESTART);
         mNeedleAnim.setInterpolator(new LinearInterpolator());
 
-        mVolumeSeek = (SeekBar) findViewById(R.id.volume_seek);
         mProgress.setIndeterminate(false);
         mProgress.setProgress(1);
         mProgress.setMax(1000);
@@ -172,7 +182,6 @@ public class MusicActivity extends BaseActivity{
             //MusicPlayer.seek(progress);
         }
     };
-
 
     /*
 

@@ -21,6 +21,7 @@ import com.dusky.world.Base.BaseActivity;
 import com.dusky.world.Base.DuskyApp;
 import com.dusky.world.Module.entity.DefaultType;
 import com.dusky.world.Module.entity.HomePageData;
+import com.dusky.world.Module.entity.MusicInfo;
 import com.dusky.world.Module.entity.User;
 import com.dusky.world.R;
 import com.dusky.world.Utils.CommonUtil;
@@ -167,6 +168,9 @@ public class HomePage extends BaseActivity {
                     case WebBannerAdapter.TYPE_MUSIC:
                         Toast.makeText(HomePage.this, "点击了第  " + position+"  项,"+"类型是音乐banner", Toast.LENGTH_SHORT).show();
                         Intent it=new Intent(HomePage.this,MusicActivity.class);
+                        MusicInfo musicInfo=new MusicInfo();
+                        musicInfo.albumData="http://img4.imgtn.bdimg.com/it/u=1794621527,1964098559&fm=27&gp=0.jpg";
+                        it.putExtra("music",musicInfo);
                         startActivity(it);
                         break;
                     case WebBannerAdapter.TYPE_VIDEO:
