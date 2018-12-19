@@ -17,8 +17,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.dusky.imageviewer.ImageViewer;
 import com.dusky.world.Module.activities.HomePage;
 import com.dusky.world.R;
+import com.dusky.world.Utils.GlideImageLoader;
 import com.dusky.world.Utils.GlideTransformation.Reflected;
 import com.dusky.world.Utils.PreferenceUtil;
 import com.dusky.world.Utils.ToastUtil;
@@ -60,7 +62,7 @@ public class DuskyApp extends MultiDexApplication implements Application.Activit
             return;
         }
         //LeakCanary.install(this);
-
+        ImageViewer.getInstance().setImageLoader(new GlideImageLoader());
         init();
         initBugly();
         registerActivityLifecycleCallbacks(this);
