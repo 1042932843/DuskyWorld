@@ -3,24 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+   >
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true">
+
+       >
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_360"
-            android:fitsSystemWindows="true"
             android:theme="@style/AppTheme"
             app:collapsedTitleTextAppearance="@style/ToolBar.TitleText"
             app:contentScrim="@color/mybg_light"
-            app:expandedTitleTextAppearance="@style/CollapsingToolbarTitleStyle.About"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -34,10 +34,11 @@
                 android:orientation="vertical"
                 android:weightSum="2">
                 <ImageView
+                    android:id="@+id/backgroundImg"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:src="@drawable/banner"
+
                     android:scaleType="centerCrop"
                     />
                 <RelativeLayout
@@ -56,7 +57,7 @@
                             android:background="@drawable/btn_theme_bg"
                             android:gravity="center"
                             android:text="@string/direct_messages"
-                            android:textColor="@color/selector_text"
+                            android:textColor="@android:color/white"
                             android:textSize="@dimen/sp_12" />
 
                         <TextView

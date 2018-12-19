@@ -144,6 +144,12 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         Glide.with(context).load(data.getDefaultTypes().get(position).getUser().getAvatar()).apply(bitmapTransform(multi)).into(holder.user_avatar);
         holder.title.setText(data.getDefaultTypes().get(position).getTitle());
         holder.user_name.setText(data.getDefaultTypes().get(position).getUser().getNickname());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
     }
 

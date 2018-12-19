@@ -133,6 +133,7 @@ public class HomePage extends BaseActivity {
             }
             defaultTypeArrayList.add(new DefaultType(user,"http://img3.imgtn.bdimg.com/it/u=2293177440,3125900197&fm=27&gp=0.jpg","十二月份图集"+i,i+"人看过",s));
         }
+        pageNum++;
         homePageAdapter.Refresh(pageNum*pageSize,pageNum);
     }
 
@@ -206,13 +207,7 @@ public class HomePage extends BaseActivity {
             @SuppressLint("CheckResult")
             @Override
             public void onLoadMore(int currentPage) {
-                Observable.timer(1000, TimeUnit.MILLISECONDS)
-                        .compose(HomePage.this.bindToLifecycle())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(aLong -> {
-                            pageNum++;
-                            loadListData();
-                        });
+                loadListData();
             }
         };
         recyclerView.addOnScrollListener(mEndlessRecyclerOnScrollListener);

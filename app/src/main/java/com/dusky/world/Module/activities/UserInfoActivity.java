@@ -1,8 +1,6 @@
 package com.dusky.world.Module.activities;
 
-import android.annotation.TargetApi;
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -12,16 +10,19 @@ import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.dusky.world.Base.BaseActivity;
-import com.dusky.world.Base.DuskyApp;
+import com.dusky.world.Design.helper.CircleCropBorder;
 import com.dusky.world.R;
 import com.dusky.world.Utils.QRCode.AwesomeQRCode;
 import com.dusky.world.Utils.SystemBarHelper;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 
 /**
  * Name: UserInfoActivity
@@ -33,6 +34,8 @@ import butterknife.OnClick;
 
 public class UserInfoActivity extends BaseActivity {
 
+    @BindView(R.id.backgroundImg)
+    ImageView backgroundImg;
     @BindView(R.id.user_info_avatar_view)
     ImageView user_info_avatar_view;
     @BindView(R.id.user_info_avatar_qr)
@@ -43,7 +46,7 @@ public class UserInfoActivity extends BaseActivity {
     boolean Enlarge = false;
 
     @OnClick(R.id.user_info_avatar_qr)
-    public void initQR() {
+    public void showQR() {
         if (!Enlarge) {
             EnlargeQR();
             Enlarge = true;
@@ -55,7 +58,9 @@ public class UserInfoActivity extends BaseActivity {
 
 
     public void InitAvatatrANDQR() {
-        Glide.with(this).load("http://img3.imgtn.bdimg.com/it/u=3967183915,4078698000&fm=27&gp=0.jpg").apply(DuskyApp.optionsRoundedCircle).into(user_info_avatar_view);
+        MultiTransformation multi = new MultiTransformation(new CircleCropBorder(4,getResources().getColor(R.color.gray_light)));
+        Glide.with(UserInfoActivity.this).load(R.drawable.banner).apply(bitmapTransform(multi)).into(user_info_avatar_view);
+        Glide.with(this).load(R.drawable.banner).into(backgroundImg);
         Glide.with(this).asBitmap().load("http://img3.imgtn.bdimg.com/it/u=3967183915,4078698000&fm=27&gp=0.jpg").into(new SimpleTarget<Bitmap>(300, 300) {
             @Override
             public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
@@ -89,7 +94,6 @@ public class UserInfoActivity extends BaseActivity {
         return super.onSupportNavigateUp();
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void init(Bundle savedInstanceState) {
         //设置StatusBar透明
