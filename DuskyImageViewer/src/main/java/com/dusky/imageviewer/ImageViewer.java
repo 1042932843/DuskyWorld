@@ -57,14 +57,6 @@ public class ImageViewer {
         ImageViewer.mInstance = mInstance;
     }
 
-    public List<ImageFolder> getmImageFolders() {
-        return mImageFolders;
-    }
 
-    public void setmImageFolders(List<ImageFolder> mImageFolders) {
-        this.mImageFolders = mImageFolders;
-    }
-
-    private List<ImageFolder> mImageFolders;      //所有的图片文件夹
 
 }

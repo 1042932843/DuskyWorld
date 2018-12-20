@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class ImageItem implements Serializable, Parcelable {
 
     public String name;       //图片的名字
-    public String path;       //图片的路径
+    public String path;       //图片所在文件夹的路径
     public long size;         //图片的大小
     public int width;         //图片的宽度
     public int height;        //图片的高度

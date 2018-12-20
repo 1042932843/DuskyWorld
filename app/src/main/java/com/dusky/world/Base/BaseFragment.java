@@ -4,12 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -21,7 +20,7 @@ import butterknife.Unbinder;
  * Comment: //TODO
  * Date: 2017-06-25 21:22
  */
-public abstract class BaseFragment extends RxFragment implements View.OnTouchListener{
+public abstract class BaseFragment extends Fragment implements View.OnTouchListener{
 
   public View parentView;
 

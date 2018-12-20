@@ -1632,8 +1632,8 @@ id translucent_view
 id uniform
 id unlabeled
 id up
+id viewPager
 id view_offset_helper
-id viewpager
 id visible
 id wrap
 id wrap_content

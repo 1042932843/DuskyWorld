@@ -1,6 +1,8 @@
 package com.dusky.imageviewer.util;
 
+import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
@@ -8,6 +10,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 
+import com.dusky.imageviewer.Database.SQLiteDbHelper;
 import com.dusky.imageviewer.ImageViewer;
 import com.dusky.imageviewer.R;
 import com.dusky.imageviewer.bean.ImageFolder;
@@ -32,7 +35,6 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private FragmentActivity activity;
     private OnImagesLoadedListener loadedListener;                     //图片加载完成的回调接口
-    private ArrayList<ImageFolder> imageFolders = new ArrayList<>();   //所有的图片文件夹
 
     /**
      * @param activity       用于初始化LoaderManager，需要兼容到2.3
@@ -69,9 +71,9 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        imageFolders.clear();
         if (data != null) {
-            ArrayList<ImageItem> allImages = new ArrayList<>();   //所有图片的集合,不分文件夹
+            SQLiteDbHelper helper = new SQLiteDbHelper(activity);
+            SQLiteDatabase database = helper.getWritableDatabase();
             while (data.moveToNext()) {
                 //查询数据
                 String imageName = data.getString(data.getColumnIndexOrThrow(IMAGE_PROJECTION[0]));
@@ -96,48 +98,33 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
                 imageItem.height = imageHeight;
                 imageItem.mimeType = imageMimeType;
                 imageItem.addTime = imageAddTime;
-                allImages.add(imageItem);
                 //根据父路径分类存放图片
                 File imageFile = new File(imagePath);
                 File imageParentFile = imageFile.getParentFile();
-                ImageFolder imageFolder = new ImageFolder();
-                imageFolder.name = imageParentFile.getName();
-                imageFolder.path = imageParentFile.getAbsolutePath();
+                String imageFolderath = imageParentFile.getAbsolutePath();
+                ContentValues contentValues = new ContentValues();
+                contentValues.put("name", imageName);
+                contentValues.put("path", imageFolderath);
+                contentValues.put("type", imageMimeType);
 
-                if (!imageFolders.contains(imageFolder)) {
-                    ArrayList<ImageItem> images = new ArrayList<>();
-                    images.add(imageItem);
-                    imageFolder.cover = imageItem;
-                    imageFolder.images = images;
-                    imageFolders.add(imageFolder);
-                } else {
-                    imageFolders.get(imageFolders.indexOf(imageFolder)).images.add(imageItem);
-                }
+
             }
-            //防止没有图片报异常
-            if (data.getCount() > 0 && allImages.size()>0) {
-                //构造所有图片的集合
-                ImageFolder allImagesFolder = new ImageFolder();
-                allImagesFolder.name = activity.getResources().getString(R.string.ip_all_images);
-                allImagesFolder.path = "/";
-                allImagesFolder.cover = allImages.get(0);
-                allImagesFolder.images = allImages;
-                imageFolders.add(0, allImagesFolder);  //确保第一条是所有图片
-            }
+
         }
 
         //回调接口，通知图片数据准备完成
-        ImageViewer.getInstance().setmImageFolders(imageFolders);
-        loadedListener.onImagesLoaded(imageFolders);
+        loadedListener.onImagesLoaded(true);
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-        System.out.println("--------");
+        System.out.println("onLoaderReset");
     }
 
     /** 所有图片加载完成的回调接口 */
     public interface OnImagesLoadedListener {
-        void onImagesLoaded(List<ImageFolder> imageFolders);
+        void onImagesLoaded(boolean ok);
     }
+
+
 }

@@ -4,13 +4,12 @@ package com.dusky.world.Base;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.dusky.world.Utils.CommonUtil;
 import com.dusky.world.Utils.SystemBarHelper;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -23,7 +22,7 @@ import butterknife.Unbinder;
  * Comment: //TODO
  * Date: 2017-06-25 21:20
  */
-public abstract class BaseActivity extends RxAppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
   public static final String TAG = BaseActivity.class.getSimpleName();
   private Unbinder bind;
 

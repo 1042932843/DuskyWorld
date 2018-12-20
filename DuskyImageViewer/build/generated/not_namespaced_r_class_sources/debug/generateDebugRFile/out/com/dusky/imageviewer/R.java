@@ -1673,8 +1673,8 @@ public final class R {
         public static int uniform = 0x7f0c009d;
         public static int unlabeled = 0x7f0c009e;
         public static int up = 0x7f0c009f;
-        public static int view_offset_helper = 0x7f0c00a0;
-        public static int viewpager = 0x7f0c00a1;
+        public static int viewPager = 0x7f0c00a0;
+        public static int view_offset_helper = 0x7f0c00a1;
         public static int visible = 0x7f0c00a2;
         public static int wrap = 0x7f0c00a3;
         public static int wrap_content = 0x7f0c00a4;

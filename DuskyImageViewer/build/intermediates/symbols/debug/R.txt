@@ -1631,8 +1631,8 @@ int id translucent_view 0x7f0c009c
 int id uniform 0x7f0c009d
 int id unlabeled 0x7f0c009e
 int id up 0x7f0c009f
-int id view_offset_helper 0x7f0c00a0
-int id viewpager 0x7f0c00a1
+int id viewPager 0x7f0c00a0
+int id view_offset_helper 0x7f0c00a1
 int id visible 0x7f0c00a2
 int id wrap 0x7f0c00a3
 int id wrap_content 0x7f0c00a4
