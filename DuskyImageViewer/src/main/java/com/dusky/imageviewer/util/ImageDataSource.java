@@ -71,7 +71,9 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        ArrayList<ImageItem> allImages = new ArrayList<>();   //所有图片的集合,不分文件夹
         if (data != null) {
+
             SQLiteDbHelper helper = new SQLiteDbHelper(activity);
             SQLiteDatabase database = helper.getWritableDatabase();
             while (data.moveToNext()) {
@@ -98,14 +100,8 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
                 imageItem.height = imageHeight;
                 imageItem.mimeType = imageMimeType;
                 imageItem.addTime = imageAddTime;
-                //根据父路径分类存放图片
-                File imageFile = new File(imagePath);
-                File imageParentFile = imageFile.getParentFile();
-                String imageFolderath = imageParentFile.getAbsolutePath();
-                ContentValues contentValues = new ContentValues();
-                contentValues.put("name", imageName);
-                contentValues.put("path", imageFolderath);
-                contentValues.put("type", imageMimeType);
+                allImages.add(imageItem);
+
 
 
             }
@@ -113,7 +109,7 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
         }
 
         //回调接口，通知图片数据准备完成
-        loadedListener.onImagesLoaded(true);
+        loadedListener.onImagesLoaded(allImages);
     }
 
     @Override
@@ -123,7 +119,7 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
 
     /** 所有图片加载完成的回调接口 */
     public interface OnImagesLoadedListener {
-        void onImagesLoaded(boolean ok);
+        void onImagesLoaded(ArrayList<ImageItem> list);
     }
 
 
