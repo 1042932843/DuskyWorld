@@ -63,6 +63,7 @@ public class DuskyApp extends MultiDexApplication implements Application.Activit
         }
         //LeakCanary.install(this);
         ImageViewer.getInstance().setImageLoader(new GlideImageLoader());
+
         init();
         initBugly();
         registerActivityLifecycleCallbacks(this);
