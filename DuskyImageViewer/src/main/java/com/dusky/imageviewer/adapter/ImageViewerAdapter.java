@@ -59,7 +59,7 @@ public class ImageViewerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         PhotoView photoView = new PhotoView(mActivity);
         ImageItem imageItem = images.get(position);
-        viewer.getImageLoader().displayImage(mActivity, imageItem.path, photoView, screenWidth, screenHeight);
+        viewer.getImageLoader().displayImage(mActivity, imageItem.path, photoView);
         photoView.setOnPhotoTapListener(new OnPhotoTapListener() {
             @Override
             public void onPhotoTap(ImageView view, float x, float y) {

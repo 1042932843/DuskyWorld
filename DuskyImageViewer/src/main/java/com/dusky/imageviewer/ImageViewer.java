@@ -25,7 +25,6 @@ public class ImageViewer {
 
     public static final int CODE_BACK = 1005;
 
-    public static final String IMAGE_LIST="images";
 
     private static ImageViewer mInstance;
     public static ImageViewer getInstance() {

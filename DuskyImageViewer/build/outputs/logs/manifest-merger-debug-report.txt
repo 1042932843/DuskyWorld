@@ -1,23 +1,23 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:2:1-18:12
-INJECTED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:2:1-18:12
-INJECTED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:2:1-18:12
-INJECTED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:2:1-18:12
-INJECTED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:2:1-18:12
-INJECTED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:2:1-18:12
-INJECTED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:2:1-18:12
+ADDED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:2:1-19:12
+INJECTED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:2:1-19:12
+INJECTED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:2:1-19:12
+INJECTED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:2:1-19:12
+INJECTED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:2:1-19:12
+INJECTED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:2:1-19:12
+INJECTED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:2:1-19:12
 	package
 		ADDED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:3:5-36
 		INJECTED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml
 		INJECTED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml
-		ADDED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:2:1-18:12
+		ADDED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:2:1-19:12
 		INJECTED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml
-		ADDED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:2:1-18:12
+		ADDED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:2:1-19:12
 		INJECTED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:2:11-69
@@ -34,11 +34,13 @@ ADDED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xm
 	android:name
 		ADDED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:10:22-62
 application
-ADDED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:12:5-16:19
+ADDED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:12:5-17:19
 	android:theme
 		ADDED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:13:9-40
 activity#com.dusky.imageviewer.ui.ImageViewerActivity
-ADDED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:15:9-59
+ADDED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:15:9-16:83
+	android:configChanges
+		ADDED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:16:13-81
 	android:name
 		ADDED from D:\AndroidPro\DuskyWorld\DuskyImageViewer\src\main\AndroidManifest.xml:15:19-57
 uses-sdk

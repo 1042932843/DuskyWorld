@@ -16,7 +16,9 @@
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application android:theme="@style/AppTheme" >
-        <activity android:name="com.dusky.imageviewer.ui.ImageViewerActivity" />
+        <activity
+            android:name="com.dusky.imageviewer.ui.ImageViewerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale" />
     </application>
 
 </manifest>

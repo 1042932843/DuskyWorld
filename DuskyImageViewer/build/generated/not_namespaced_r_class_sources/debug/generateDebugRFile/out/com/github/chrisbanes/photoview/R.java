@@ -696,21 +696,21 @@ public final class R {
         public static int start = 0x7f0c007e;
         public static int submenuarrow = 0x7f0c0081;
         public static int submit_area = 0x7f0c0082;
-        public static int tabMode = 0x7f0c0083;
-        public static int tag_transition_group = 0x7f0c0084;
-        public static int text = 0x7f0c0087;
-        public static int text2 = 0x7f0c0088;
-        public static int textSpacerNoButtons = 0x7f0c0089;
-        public static int textSpacerNoTitle = 0x7f0c008a;
-        public static int time = 0x7f0c008f;
-        public static int title = 0x7f0c0090;
-        public static int titleDividerNoCustom = 0x7f0c0091;
-        public static int title_template = 0x7f0c0092;
-        public static int top = 0x7f0c0094;
-        public static int topPanel = 0x7f0c0095;
-        public static int uniform = 0x7f0c009d;
-        public static int up = 0x7f0c009f;
-        public static int wrap_content = 0x7f0c00a4;
+        public static int tabMode = 0x7f0c0084;
+        public static int tag_transition_group = 0x7f0c0085;
+        public static int text = 0x7f0c0088;
+        public static int text2 = 0x7f0c0089;
+        public static int textSpacerNoButtons = 0x7f0c008a;
+        public static int textSpacerNoTitle = 0x7f0c008b;
+        public static int time = 0x7f0c0090;
+        public static int title = 0x7f0c0091;
+        public static int titleDividerNoCustom = 0x7f0c0092;
+        public static int title_template = 0x7f0c0093;
+        public static int top = 0x7f0c0095;
+        public static int topPanel = 0x7f0c0096;
+        public static int uniform = 0x7f0c009e;
+        public static int up = 0x7f0c00a0;
+        public static int wrap_content = 0x7f0c00a5;
     }
     public static final class integer {
         private integer() {}
@@ -794,8 +794,8 @@ public final class R {
         public static int abc_shareactionprovider_share_with = 0x7f150025;
         public static int abc_shareactionprovider_share_with_application = 0x7f150026;
         public static int abc_toolbar_collapse_description = 0x7f150027;
-        public static int search_menu_title = 0x7f150040;
-        public static int status_bar_notification_info_overflow = 0x7f150041;
+        public static int search_menu_title = 0x7f150041;
+        public static int status_bar_notification_info_overflow = 0x7f150042;
     }
     public static final class style {
         private style() {}

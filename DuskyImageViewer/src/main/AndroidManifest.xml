@@ -12,7 +12,8 @@
     <application
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ui.ImageViewerActivity"/>
+        <activity android:name=".ui.ImageViewerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"/>
     </application>
 
 </manifest>

@@ -11,10 +11,21 @@ import java.io.File;
 
 
 public class GlideImageLoader implements ImageLoader {
+    int width;
+    int height;
+
+    public GlideImageLoader(){
+
+    }
+
+    //自行实现构造方法传入需要的配置参数
+    public GlideImageLoader(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
 
     @Override
-    public void displayImage(Activity activity, String path, ImageView imageView, int width, int height) {
-
+    public void displayImage(Activity activity,String  path,ImageView imageView) {
         Glide.with(activity)                             //配置上下文
                 .load(Uri.fromFile(new File(path)))      //设置图片路径
                 .into(imageView);

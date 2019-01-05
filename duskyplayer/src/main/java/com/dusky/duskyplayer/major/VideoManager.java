@@ -81,7 +81,7 @@ public class VideoManager implements IMediaPlayer.OnPreparedListener, IMediaPlay
 
     private int playPosition = -22; //播放的tag，防止错位置，因为普通的url也可能重复
 
-    private int buffterPoint;
+    private int bufferPoint;
 
     private int timeOut = 8 * 1000;
 
@@ -264,7 +264,7 @@ public class VideoManager implements IMediaPlayer.OnPreparedListener, IMediaPlay
                     if (proxy != null) {
                         proxy.unregisterCacheListener(VideoManager.this);
                     }
-                    buffterPoint = 0;
+                    bufferPoint = 0;
                     cancelTimeOutBuffer();
                     break;
             }
@@ -436,10 +436,10 @@ public class VideoManager implements IMediaPlayer.OnPreparedListener, IMediaPlay
             @Override
             public void run() {
                 if (listener != null) {
-                    if (percent > buffterPoint) {
+                    if (percent > bufferPoint) {
                         listener().onBufferingUpdate(percent);
                     } else {
-                        listener().onBufferingUpdate(buffterPoint);
+                        listener().onBufferingUpdate(bufferPoint);
                     }
                 }
             }
@@ -510,7 +510,7 @@ public class VideoManager implements IMediaPlayer.OnPreparedListener, IMediaPlay
 
     @Override
     public void onCacheAvailable(File cacheFile, String url, int percentsAvailable) {
-        buffterPoint = percentsAvailable;
+        bufferPoint = percentsAvailable;
     }
 
     /**

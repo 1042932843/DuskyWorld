@@ -73,9 +73,6 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         ArrayList<ImageItem> allImages = new ArrayList<>();   //所有图片的集合,不分文件夹
         if (data != null) {
-
-            SQLiteDbHelper helper = new SQLiteDbHelper(activity);
-            SQLiteDatabase database = helper.getWritableDatabase();
             while (data.moveToNext()) {
                 //查询数据
                 String imageName = data.getString(data.getColumnIndexOrThrow(IMAGE_PROJECTION[0]));
@@ -101,7 +98,6 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
                 imageItem.mimeType = imageMimeType;
                 imageItem.addTime = imageAddTime;
                 allImages.add(imageItem);
-
 
 
             }

@@ -61,7 +61,7 @@ public class HomePage extends BaseActivity {
         if(islogin){
             it=new Intent(HomePage.this,LoginActivity.class);
         }else{
-            it=new Intent(HomePage.this,ImageViewerActivity.class);
+            it=new Intent(HomePage.this,LoginActivity.class);
         }
         startActivity(it);
     }
@@ -166,6 +166,8 @@ public class HomePage extends BaseActivity {
                 switch (type){
                     case WebBannerAdapter.TYPE_IMG:
                         Toast.makeText(HomePage.this, "点击了第  " + position+"  项,"+"类型是图片banner", Toast.LENGTH_SHORT).show();
+                        Intent bannerintent=new Intent(HomePage.this,ImageViewerActivity.class);
+                        startActivity(bannerintent);
                         break;
                     case WebBannerAdapter.TYPE_MUSIC:
                         Toast.makeText(HomePage.this, "点击了第  " + position+"  项,"+"类型是音乐banner", Toast.LENGTH_SHORT).show();

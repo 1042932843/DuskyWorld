@@ -99,13 +99,13 @@ public final class R {
         public static int notification_main_column_container = 0x7f0c0050;
         public static int right_icon = 0x7f0c005d;
         public static int right_side = 0x7f0c005e;
-        public static int tag_transition_group = 0x7f0c0084;
-        public static int tag_unhandled_key_event_manager = 0x7f0c0085;
-        public static int tag_unhandled_key_listeners = 0x7f0c0086;
-        public static int text = 0x7f0c0087;
-        public static int text2 = 0x7f0c0088;
-        public static int time = 0x7f0c008f;
-        public static int title = 0x7f0c0090;
+        public static int tag_transition_group = 0x7f0c0085;
+        public static int tag_unhandled_key_event_manager = 0x7f0c0086;
+        public static int tag_unhandled_key_listeners = 0x7f0c0087;
+        public static int text = 0x7f0c0088;
+        public static int text2 = 0x7f0c0089;
+        public static int time = 0x7f0c0090;
+        public static int title = 0x7f0c0091;
     }
     public static final class integer {
         private integer() {}
@@ -125,7 +125,7 @@ public final class R {
     public static final class string {
         private string() {}
 
-        public static int status_bar_notification_info_overflow = 0x7f150041;
+        public static int status_bar_notification_info_overflow = 0x7f150042;
     }
     public static final class style {
         private style() {}
