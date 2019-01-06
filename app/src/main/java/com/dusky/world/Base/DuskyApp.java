@@ -217,7 +217,10 @@ public class DuskyApp extends MultiDexApplication implements Application.Activit
         int size=activities.size();
         for(int i=0;i<size;i++){
             if(activities.get(i)!=null){
-                 activities.get(i).get().finish();
+                if(activities.get(i).get()!=null){
+                    activities.get(i).get().finish();
+                }
+
             }
         }
     }

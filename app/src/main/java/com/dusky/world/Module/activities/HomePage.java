@@ -88,7 +88,7 @@ public class HomePage extends BaseActivity {
 
     @OnClick(R.id.set)
     public void goset(){
-        ToastUtil.ShortToast("?");
+        startActivity(new Intent(HomePage.this,SetActivity.class));
     }
     @OnClick(R.id.search)
     public void gocup(){

@@ -231,7 +231,7 @@ public class SystemBarHelper {
    * 2.不删除fitsSystemWindows属性:也可以区别处理,Android5.0以上使用自己的方式实现,不调用该方法
    *
    * @param window 一般都是用于Activity的window,也可以是其他的例如Dialog,DialogFragment
-   * @param alpha 透明栏透明度[0.0-1.0]
+   * @param alpha 状态栏透明度[0.0-1.0]
    */
   public static void immersiveStatusBar(Window window,
                                         @FloatRange(from = 0.0, to = 1.0) float alpha) {

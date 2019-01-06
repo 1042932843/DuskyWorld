@@ -11,8 +11,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.dusky.imageviewer.ImageViewer;
 import com.dusky.imageviewer.R;
@@ -77,7 +77,8 @@ public class ImageViewerActivity extends AppCompatActivity implements ImageDataS
         } else {
             new ImageDataSource(this, null, this);
         }
-        initDanmaku();
+
+
 
     }
 
@@ -143,9 +144,9 @@ public class ImageViewerActivity extends AppCompatActivity implements ImageDataS
                     return false;
                 }
             });*/
-            danmakuView.prepare(mParser, mContext);
             danmakuView.showFPS(false);
             danmakuView.enableDanmakuDrawingCache(true);
+
         }
     }
 
@@ -175,8 +176,28 @@ public class ImageViewerActivity extends AppCompatActivity implements ImageDataS
 
     @Override
     public void onImagesLoaded(ArrayList<ImageItem> list) {
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN); //隐藏状态栏
+        initDanmaku();
         images.addAll(list);
         imageViewerAdapter.notifyDataSetChanged();
+        danmakuView.prepare(mParser, mContext);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                danmakuView.clear();
+                danmakuView.prepare(mParser, mContext);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
     }
 
 

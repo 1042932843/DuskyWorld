@@ -23,7 +23,7 @@ public class GlideImageLoader implements ImageLoader {
         this.width = width;
         this.height = height;
     }
-
+    //自行实现该方法调用图片加载框架
     @Override
     public void displayImage(Activity activity,String  path,ImageView imageView) {
         Glide.with(activity)                             //配置上下文

@@ -34,6 +34,7 @@
         <activity android:name=".Module.activities.MusicActivity" />
         <activity android:name=".Module.activities.LoginActivity" />
         <activity android:name=".Module.activities.UserInfoActivity" />
+        <activity android:name=".Module.activities.SetActivity" />
         <!-- bugly -->
         <provider
             android:name="android.support.v4.content.FileProvider"

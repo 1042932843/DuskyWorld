@@ -33,7 +33,6 @@ public class SplashActivity extends BaseActivity {
     @OnClick(R.id.jump)
     public void jump(){
         startActivity(new Intent(this,HomePage.class));
-        ADVideoPlayer.releaseAllVideos();
         finish();
     }
 
@@ -60,6 +59,7 @@ public class SplashActivity extends BaseActivity {
         }
 
         Observable.timer(time, TimeUnit.MILLISECONDS)
+                .compose(this.bindToLifecycle())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
                     startActivity(new Intent(this,HomePage.class));
