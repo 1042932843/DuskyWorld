@@ -169,7 +169,6 @@ public abstract class VideoPlayer extends BaseVideoPlayer implements View.OnClic
         this.mContext = context;
         View.inflate(context, getLayoutId(), this);
         mStartButton = findViewById(R.id.start);
-        mSmallClose = findViewById(R.id.small_close);
         mBackButton = (ImageView) findViewById(R.id.back);
         mCoverImageView = (ImageView) findViewById(R.id.cover);
         mFullscreenButton = (ImageView) findViewById(R.id.fullscreen);
@@ -493,28 +492,6 @@ public abstract class VideoPlayer extends BaseVideoPlayer implements View.OnClic
         }
     }
 
-    /**
-     * 小窗口
-     **/
-    @Override
-    protected void setSmallVideoTextureView(OnTouchListener onTouchListener) {
-        mTextureViewContainer.setOnTouchListener(onTouchListener);
-        mProgressBar.setOnTouchListener(null);
-        mFullscreenButton.setOnTouchListener(null);
-        mFullscreenButton.setVisibility(INVISIBLE);
-        mProgressBar.setVisibility(INVISIBLE);
-        mCurrentTimeTextView.setVisibility(INVISIBLE);
-        mTotalTimeTextView.setVisibility(INVISIBLE);
-        mTextureViewContainer.setOnClickListener(null);
-        mSmallClose.setVisibility(VISIBLE);
-        mSmallClose.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                hideSmallVideo();
-                releaseAllVideos();
-            }
-        });
-    }
 
     /**
      * 设置界面选择
@@ -937,7 +914,7 @@ public abstract class VideoPlayer extends BaseVideoPlayer implements View.OnClic
     public void onInfo(int what, int extra) {
         if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START) {
             mBackUpPlayingBufferState = mCurrentState;
-            //避免在onPrepared之前就进入了buffering，导致一只loading
+            //避免在onPrepared之前就进入了buffering，导致一直loading
             if (mHadPlay && mCurrentState != CURRENT_STATE_PREPAREING && mCurrentState > 0)
                 setStateAndUi(CURRENT_STATE_PLAYING_BUFFERING_START);
 
@@ -976,8 +953,7 @@ public abstract class VideoPlayer extends BaseVideoPlayer implements View.OnClic
     public void clearCurrentCache() {
         if (mCacheFile) {
             //是否为缓存文件
-
-            //可能是因为缓存文件除了问题
+            //可能是因为缓存文件出了问题
             CommonUtil.deleteFile(mUrl.replace("file://", ""));
             mUrl = mOriginUrl;
         } else if (mUrl.contains("127.0.0.1")) {
@@ -1212,20 +1188,6 @@ public abstract class VideoPlayer extends BaseVideoPlayer implements View.OnClic
      */
     public void setPlayPosition(int playPosition) {
         this.mPlayPosition = playPosition;
-    }
-
-    /**
-     * 显示小窗口的关闭按键
-     */
-    public void setSmallCloseShow() {
-        mSmallClose.setVisibility(VISIBLE);
-    }
-
-    /**
-     * 隐藏小窗口的关闭按键
-     */
-    public void setSmallCloseHide() {
-        mSmallClose.setVisibility(GONE);
     }
 
     /**

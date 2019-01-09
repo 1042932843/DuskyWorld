@@ -243,7 +243,7 @@ public abstract class ADVideoPlayer extends BaseADVideoPlayer implements Texture
         VideoManager.instance().setPlayTag(mPlayTag);
         VideoManager.instance().setPlayPosition(mPlayPosition);
         addTextureView();
-        mAudioManager.requestAudioFocus(onAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+        //mAudioManager.requestAudioFocus(onAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
         ((Activity) getContext()).getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         mBackUpPlayingBufferState = -1;
         VideoManager.instance().prepare(mUrl, mMapHeadData, mLooping, mSpeed);
@@ -381,7 +381,7 @@ public abstract class ADVideoPlayer extends BaseADVideoPlayer implements Texture
                 VideoManager.instance().lastListener().onAutoCompletion();
             }
         }
-        mAudioManager.abandonAudioFocus(onAudioFocusChangeListener);
+        //mAudioManager.abandonAudioFocus(onAudioFocusChangeListener);
         ((Activity) getContext()).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
@@ -402,7 +402,7 @@ public abstract class ADVideoPlayer extends BaseADVideoPlayer implements Texture
         VideoManager.instance().setCurrentVideoHeight(0);
         VideoManager.instance().setCurrentVideoWidth(0);
 
-        mAudioManager.abandonAudioFocus(onAudioFocusChangeListener);
+        //mAudioManager.abandonAudioFocus(onAudioFocusChangeListener);
         ((Activity) getContext()).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 

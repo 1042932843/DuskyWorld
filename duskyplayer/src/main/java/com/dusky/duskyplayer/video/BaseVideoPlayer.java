@@ -42,8 +42,6 @@ import static com.dusky.duskyplayer.utils.CommonUtil.showSupportActionBar;
 
 public abstract class BaseVideoPlayer extends FrameLayout implements VideoPlayerListener {
 
-    public static final int SMALL_ID = 84778;
-
     protected static final int FULLSCREEN_ID = 85597;
 
     protected static long CLICK_QUIT_FULLSCREEN_TIME = 0;
@@ -106,7 +104,6 @@ public abstract class BaseVideoPlayer extends FrameLayout implements VideoPlayer
 
     protected ViewGroup mTextureViewContainer; //渲染控件父类
 
-    protected View mSmallClose; //小窗口关闭按键
 
     protected VideoAllCallBack mVideoAllCallBack;
 
@@ -489,90 +486,6 @@ public abstract class BaseVideoPlayer extends FrameLayout implements VideoPlayer
     }
 
 
-    /**
-     * 显示小窗口
-     */
-    @SuppressWarnings("ResourceType")
-    public BaseVideoPlayer showSmallVideo(Point size, final boolean actionBar, final boolean statusBar) {
-
-        final ViewGroup vp = getViewGroup();
-
-        removeVideo(vp, SMALL_ID);
-
-        if (mTextureViewContainer.getChildCount() > 0) {
-            mTextureViewContainer.removeAllViews();
-        }
-
-        try {
-            Constructor<BaseVideoPlayer> constructor = (Constructor<BaseVideoPlayer>) BaseVideoPlayer.this.getClass().getConstructor(Context.class);
-            BaseVideoPlayer gsyVideoPlayer = constructor.newInstance(getContext());
-            gsyVideoPlayer.setId(SMALL_ID);
-
-            LayoutParams lpParent = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            FrameLayout frameLayout = new FrameLayout(mContext);
-
-            LayoutParams lp = new LayoutParams(size.x, size.y);
-            int marginLeft = CommonUtil.getScreenWidth(mContext) - size.x;
-            int marginTop = CommonUtil.getScreenHeight(mContext) - size.y;
-
-            if (actionBar) {
-                marginTop = marginTop - getActionBarHeight((Activity) mContext);
-            }
-
-            if (statusBar) {
-                marginTop = marginTop - getStatusBarHeight(mContext);
-            }
-
-            lp.setMargins(marginLeft, marginTop, 0, 0);
-            frameLayout.addView(gsyVideoPlayer, lp);
-
-            vp.addView(frameLayout, lpParent);
-            gsyVideoPlayer.mHadPlay = mHadPlay;
-            gsyVideoPlayer.setUp(mOriginUrl, mCache, mCachePath, mMapHeadData, mObjects);
-            gsyVideoPlayer.setStateAndUi(mCurrentState);
-            gsyVideoPlayer.addTextureView();
-            //隐藏掉所有的弹出状态哟
-            gsyVideoPlayer.onClickUiToggle();
-            gsyVideoPlayer.setVideoAllCallBack(mVideoAllCallBack);
-            gsyVideoPlayer.setLooping(isLooping());
-            gsyVideoPlayer.setSpeed(getSpeed());
-            gsyVideoPlayer.setSmallVideoTextureView(new SmallVideoTouch(gsyVideoPlayer, marginLeft, marginTop));
-
-            VideoManager.instance().setLastListener(this);
-            VideoManager.instance().setListener(gsyVideoPlayer);
-
-            if (mVideoAllCallBack != null) {
-                mVideoAllCallBack.onEnterSmallWidget(mUrl, mObjects);
-            }
-
-            return gsyVideoPlayer;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    /**
-     * 隐藏小窗口
-     */
-    @SuppressWarnings("ResourceType")
-    public void hideSmallVideo() {
-        final ViewGroup vp = getViewGroup();
-        VideoPlayer gsyVideoPlayer = (VideoPlayer) vp.findViewById(SMALL_ID);
-        removeVideo(vp, SMALL_ID);
-        mCurrentState = VideoManager.instance().getLastState();
-        if (gsyVideoPlayer != null) {
-            mCurrentState = gsyVideoPlayer.getCurrentState();
-        }
-        VideoManager.instance().setListener(VideoManager.instance().lastListener());
-        VideoManager.instance().setLastListener(null);
-        setStateAndUi(mCurrentState);
-        addTextureView();
-        CLICK_QUIT_FULLSCREEN_TIME = System.currentTimeMillis();
-        if (mVideoAllCallBack != null) {
-            mVideoAllCallBack.onQuitSmallWidget(mUrl, mObjects);
-        }
-    }
 
 
     /**
@@ -608,11 +521,6 @@ public abstract class BaseVideoPlayer extends FrameLayout implements VideoPlayer
      * 添加播放的view
      */
     protected abstract void addTextureView();
-
-    /**
-     * 小窗口
-     **/
-    protected abstract void setSmallVideoTextureView(OnTouchListener onTouchListener);
 
 
     protected abstract void onClickUiToggle();
