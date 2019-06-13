@@ -72,6 +72,17 @@ public class FateAdapter extends RecyclerView.Adapter<FateAdapter.ViewHolder>{
             title = (TextView)view.findViewById(R.id.title);
             num = (TextView)view.findViewById(R.id.num);
         }
+
+
+    }
+
+    OnItemClickListener onItemClickListener;
+    public interface OnItemClickListener{
+        void onClick(int position);
+        void onLongClick(int position);
+    }
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener ){
+        this.onItemClickListener=onItemClickListener;
     }
 }
 

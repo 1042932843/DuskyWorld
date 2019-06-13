@@ -1,1 +1,1 @@
-include ':app', ':DuskyView', ':duskyplayer', ':DuskyImageViewer'
+include ':app', ':DuskyView', ':DuskyImageViewer'

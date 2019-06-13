@@ -122,7 +122,7 @@ public abstract class ADVideoPlayer extends BaseADVideoPlayer implements Texture
 
     /**
      * 设置自定义so包加载类，必须在setUp之前调用
-     * 不然setUp时会第一次实例化GSYVideoManager
+     * 不然setUp时会第一次实例化VideoManager
      */
     public void setIjkLibLoader(IjkLibLoader libLoader) {
         VideoManager.setIjkLibLoader(libLoader);

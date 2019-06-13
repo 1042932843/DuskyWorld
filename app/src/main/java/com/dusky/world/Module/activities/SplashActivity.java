@@ -9,8 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.dusky.duskyplayer.video.ADVideoPlayer;
-import com.dusky.duskyplayer.video.EmptyADVideoPlayer;
 import com.dusky.world.Base.BaseActivity;
 import com.dusky.world.R;
 
@@ -36,8 +34,8 @@ public class SplashActivity extends BaseActivity {
         finish();
     }
 
-    @BindView(R.id.video_player)
-    EmptyADVideoPlayer video_player;
+    /*@BindView(R.id.video_player)
+    EmptyADVideoPlayer video_player;*/
 
     @Override
     public int getLayoutId() {
@@ -52,8 +50,9 @@ public class SplashActivity extends BaseActivity {
         //source1="file://"+"/storage/emulated/0/Movies/Screenrecords/S81122-16271597.mp4";
         //增加title
         if(!TextUtils.isEmpty(source1)){
-            video_player.setUp(source1,true,"");
-            video_player.startPlayLogic();
+            //video_player.setUp(source1,true,"");
+            //video_player.startPlayLogic();
+            Glide.with(this).load(R.drawable.banner).into(splash);
         }else{
             Glide.with(this).load(R.drawable.banner).into(splash);
         }
@@ -72,7 +71,7 @@ public class SplashActivity extends BaseActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        video_player=null;
-        ADVideoPlayer.releaseAllVideos();
+        //video_player=null;
+        //ADVideoPlayer.releaseAllVideos();
     }
 }
