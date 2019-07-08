@@ -1,4 +1,4 @@
-package com.nbsix.dsy.bannerview;
+package com.nbsix.dsy.bannerView;
 
 import android.content.Context;
 import android.os.Parcel;
