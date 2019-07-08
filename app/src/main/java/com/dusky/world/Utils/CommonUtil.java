@@ -15,6 +15,7 @@ import android.support.v7.app.AlertDialog;
 import com.dusky.world.R;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 /**
  * Created by dsy on 16/8/4 21:18
@@ -176,4 +177,6 @@ public class CommonUtil {
     } else
       return getSDcardAvailableSize();
   }
+
+
 }
