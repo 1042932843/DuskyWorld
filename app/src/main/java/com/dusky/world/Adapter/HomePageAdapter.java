@@ -1,9 +1,9 @@
 package com.dusky.world.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.MultiTransformation;
 import com.dusky.world.Design.helper.CircleCropBorder;
+import com.dusky.world.Module.activities.TimeAxisActivity;
 import com.dusky.world.Module.entity.HomePageData;
 import com.dusky.world.Module.entity.TooSimple;
 import com.dusky.world.R;
@@ -190,6 +191,12 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
 
         };
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, TimeAxisActivity.class));
+            }
+        });
         holder.recyclerView_fate.setLayoutManager(layoutManage);
         holder.recyclerView_fate.setAdapter(fateAdapter);
         holder.recyclerView_fate.setNestedScrollingEnabled(false);
