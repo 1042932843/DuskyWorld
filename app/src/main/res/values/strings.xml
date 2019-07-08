@@ -10,4 +10,10 @@
     <string name="get_in">上车</string>
     <string name="tip">龙是真实存在的，我朋友前两天才被一条龙服务过。</string>
     <string name="lv">Lv.0</string>
+    <string name="time_axis"><![CDATA[时间轴 >]]></string>
+    <string name="fate_now">本周选中</string>
+    <string name="next_fate">下周投票</string>
+    <string name="vote">投票</string>
+    <string name="check_for_updates">检查更新</string>
+    <string name="clean_up_the_cache">清理缓存</string>
 </resources>

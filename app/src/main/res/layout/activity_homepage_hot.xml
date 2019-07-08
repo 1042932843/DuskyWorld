@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:background="@color/mygray"
         android:padding="@dimen/dp_8"
-        android:layout_marginTop="@dimen/dp_12"
+        android:layout_marginTop="@dimen/dp_6"
         >
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView_hot"
