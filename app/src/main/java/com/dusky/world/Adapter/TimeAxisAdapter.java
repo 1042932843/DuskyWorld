@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -33,10 +34,15 @@ public class TimeAxisAdapter extends RecyclerView.Adapter<TimeAxisAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+        /*if(i%2==0){
+            viewHolder.itemView.setBackgroundResource(R.drawable.pop_left);
+        }else{
+            viewHolder.itemView.setBackgroundResource(R.drawable.pop_right);
+        }*/
         viewHolder.des.setText(items.get(i).getDes());
         viewHolder.num.setText(items.get(i).getNum());
         viewHolder.time.setText(items.get(i).getTime());
-        Glide.with(context).load(items.get(i).getUrl()).into(viewHolder.imageView);
+        Glide.with(context).load(R.drawable.qyqx).into(viewHolder.imageView);
     }
 
     @Override
