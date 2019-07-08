@@ -158,6 +158,7 @@ public class UserInfoActivity extends BaseActivity {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (!Enlarge) {
+
         } else {
             NarrowQR();
             Enlarge = false;

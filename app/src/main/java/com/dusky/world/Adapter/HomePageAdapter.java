@@ -3,6 +3,7 @@ package com.dusky.world.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -156,14 +157,23 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
     private class HolderTypeHOT extends RecyclerView.ViewHolder {
-
+        RecyclerView recyclerView_hot;
         private HolderTypeHOT(View itemView) {
             super(itemView);
+            recyclerView_hot=(RecyclerView) itemView.findViewById(R.id.recyclerView_hot);
         }
     }
     private void bindTypeHOT(HolderTypeHOT holder){
-
-
+        HotAdapter hotAdapter=new HotAdapter(context);
+        holder.recyclerView_hot.setLayoutManager(new LinearLayoutManager(context));
+        holder.recyclerView_hot.setAdapter(hotAdapter);
+        holder.recyclerView_hot.setNestedScrollingEnabled(false);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //context.startActivity(new Intent(context, Activity.class));
+            }
+        });
     }
 
 

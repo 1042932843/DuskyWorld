@@ -1,5 +1,6 @@
 package com.dusky.world.Module.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -43,7 +44,8 @@ public class LoginActivity extends BaseActivity implements KeyEditText.KeyPreIme
 
     @OnClick(R.id.login_btn)
     public void do_login(){
-        ToastUtil.ShortToast("?");
+        startActivity(new Intent(LoginActivity.this,UserInfoActivity.class));
+        finish();
 
     }
 
