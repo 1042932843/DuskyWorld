@@ -2,10 +2,31 @@ package com.dusky.world.Module.entity;
 
 public class TimeAxisItem {
     String url;
+    String time;
+    String num;
+    String des;
 
-    public TimeAxisItem(String url, String des) {
+    public TimeAxisItem(String url, String time, String num, String des) {
         this.url = url;
+        this.time = time;
+        this.num = num;
         this.des = des;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getNum() {
+        return num;
+    }
+
+    public void setNum(String num) {
+        this.num = num;
     }
 
     public String getUrl() {
@@ -24,5 +45,5 @@ public class TimeAxisItem {
         this.des = des;
     }
 
-    String des;
+
 }

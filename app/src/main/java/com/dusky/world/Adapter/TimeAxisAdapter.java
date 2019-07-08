@@ -33,7 +33,9 @@ public class TimeAxisAdapter extends RecyclerView.Adapter<TimeAxisAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        viewHolder.textView.setText(items.get(i).getDes());
+        viewHolder.des.setText(items.get(i).getDes());
+        viewHolder.num.setText(items.get(i).getNum());
+        viewHolder.time.setText(items.get(i).getTime());
         Glide.with(context).load(items.get(i).getUrl()).into(viewHolder.imageView);
     }
 
@@ -44,12 +46,14 @@ public class TimeAxisAdapter extends RecyclerView.Adapter<TimeAxisAdapter.ViewHo
 
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
-        TextView textView;
+        TextView des,time,num;
 
         public ViewHolder(View view){
             super(view);
             imageView=(ImageView)view.findViewById(R.id.image);
-            textView=(TextView)view.findViewById(R.id.time);
+            time=(TextView)view.findViewById(R.id.time);
+            des=(TextView)view.findViewById(R.id.des);
+            num=(TextView)view.findViewById(R.id.num);
         }
     }
 }

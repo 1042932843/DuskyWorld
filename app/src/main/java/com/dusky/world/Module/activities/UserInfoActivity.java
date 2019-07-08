@@ -61,7 +61,7 @@ public class UserInfoActivity extends BaseActivity {
         MultiTransformation multi = new MultiTransformation(new CircleCropBorder(4,getResources().getColor(R.color.gray_light)));
         Glide.with(UserInfoActivity.this).load(R.drawable.banner).apply(bitmapTransform(multi)).into(user_info_avatar_view);
         Glide.with(this).load(R.drawable.banner).into(backgroundImg);
-        Glide.with(this).asBitmap().load("http://img3.imgtn.bdimg.com/it/u=3967183915,4078698000&fm=27&gp=0.jpg").into(new SimpleTarget<Bitmap>(300, 300) {
+        Glide.with(this).asBitmap().load(R.drawable.testpng).into(new SimpleTarget<Bitmap>(300, 300) {
             @Override
             public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
                 generateQR(resource);

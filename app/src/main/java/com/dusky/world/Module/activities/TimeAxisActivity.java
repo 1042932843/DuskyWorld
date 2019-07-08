@@ -10,12 +10,16 @@
  */
 package com.dusky.world.Module.activities;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.dusky.world.Adapter.TimeAxisAdapter;
 import com.dusky.world.Base.BaseActivity;
 import com.dusky.world.Design.helper.ItemDecoration;
@@ -61,19 +65,22 @@ public class TimeAxisActivity extends BaseActivity {
     }
 
     public void initRecyclerView(){
+
+
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
         List<TimeAxisItem> items=new ArrayList<>();
-        items.add(new TimeAxisItem("http://img0.imgtn.bdimg.com/it/u=1352823040,1166166164&fm=27&gp=0.jpg","测试1"));
-        items.add(new TimeAxisItem("http://img0.imgtn.bdimg.com/it/u=1352823040,1166166164&fm=27&gp=0.jpg","测试2"));
-        items.add(new TimeAxisItem("http://img0.imgtn.bdimg.com/it/u=1352823040,1166166164&fm=27&gp=0.jpg","测试3"));
-        items.add(new TimeAxisItem("http://img0.imgtn.bdimg.com/it/u=1352823040,1166166164&fm=27&gp=0.jpg","测试4"));
-        items.add(new TimeAxisItem("http://img0.imgtn.bdimg.com/it/u=1352823040,1166166164&fm=27&gp=0.jpg","测试5"));
+        items.add(new TimeAxisItem("http://img0.imgtn.bdimg.com/it/u=1352823040,1166166164&fm=27&gp=0.jpg","2019-07-08","999人想看","小猪佩奇"));
+        items.add(new TimeAxisItem("http://img0.imgtn.bdimg.com/it/u=1352823040,1166166164&fm=27&gp=0.jpg","2019-07-08","999人想看","大猪佩奇"));
+        items.add(new TimeAxisItem("http://img0.imgtn.bdimg.com/it/u=1352823040,1166166164&fm=27&gp=0.jpg","2019-07-08","999人想看","野猪佩奇"));
+        items.add(new TimeAxisItem("http://img0.imgtn.bdimg.com/it/u=1352823040,1166166164&fm=27&gp=0.jpg","2019-07-08","999人想看","公猪佩奇"));
+        items.add(new TimeAxisItem("http://img0.imgtn.bdimg.com/it/u=1352823040,1166166164&fm=27&gp=0.jpg","2019-07-08","999人想看","母猪佩奇"));
         timeAxisAdapter=new TimeAxisAdapter(TimeAxisActivity.this,items);
         recyclerView.addItemDecoration(new ItemDecoration(TimeAxisActivity.this,100));
         recyclerView.setAdapter(timeAxisAdapter);
 
 
     }
+
 
     @Override
     public boolean onSupportNavigateUp() {

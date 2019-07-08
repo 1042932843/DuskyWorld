@@ -15,7 +15,7 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
     private Context mContext;
     private int distance;
 
-    Drawable drawable;
+    //Drawable drawable;
     Drawable verticalLine;
     Drawable horizontalLine;
 
@@ -24,7 +24,7 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
         mContext = context;
         this.distance = distance;
         verticalLine = ContextCompat.getDrawable(mContext, R.drawable.gray_line);
-        drawable = ContextCompat.getDrawable(mContext, R.drawable.time);
+        //drawable = ContextCompat.getDrawable(mContext, R.drawable.time);
         horizontalLine = ContextCompat.getDrawable(mContext, R.drawable.horizontal_line);
     }
 
@@ -68,8 +68,8 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
         for (int i = 0; i < childCount; i++) {//-1最后一个不画
             final View child = parent.getChildAt(i);
 
-            final int top = child.getTop() + (child.getBottom() - child.getTop()) / 2 - drawable.getIntrinsicHeight() / 2;
-            final int bottom = top + drawable.getIntrinsicHeight();
+            //final int top = child.getTop() + (child.getBottom() - child.getTop()) / 2 - drawable.getIntrinsicHeight() / 2;
+            //final int bottom = top + drawable.getIntrinsicHeight();
 
             int horizontalLineLeft = child.getRight();
             int horizontalLineRight = parentWidth / 2;
@@ -83,11 +83,11 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
             horizontalLine.setBounds(horizontalLineLeft, horizontalLineTop, horizontalLineRight, horizontalLineTop + 2);
             horizontalLine.draw(c);
 
-            int drawableLeft = parentWidth / 2 - drawable.getIntrinsicWidth() / 2;
-            int drawableRight = parentWidth / 2 + drawable.getIntrinsicWidth() / 2;
+            //int drawableLeft = parentWidth / 2 - drawable.getIntrinsicWidth() / 2;
+            //int drawableRight = parentWidth / 2 + drawable.getIntrinsicWidth() / 2;
 
-            drawable.setBounds(drawableLeft, top, drawableRight, bottom);
-            drawable.draw(c);
+            //drawable.setBounds(drawableLeft, top, drawableRight, bottom);
+            //drawable.draw(c);
         }
     }
 }
