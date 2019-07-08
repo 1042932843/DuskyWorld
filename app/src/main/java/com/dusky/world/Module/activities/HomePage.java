@@ -28,16 +28,13 @@ import com.dusky.world.R;
 import com.dusky.world.Utils.CommonUtil;
 import com.dusky.world.Utils.ToastUtil;
 import com.nbsix.dsy.badgeView.BadgeView;
-import com.nbsix.dsy.bannerview.BannerView;
+import com.nbsix.dsy.bannerView.BannerView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 
 import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 

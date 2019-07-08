@@ -36,7 +36,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:visibility="visible" />
-                <com.nbsix.dsy.bannerview.BannerView
+                <com.nbsix.dsy.bannerView.BannerView
                     android:id="@+id/banner"
                     android:layout_marginTop="@dimen/dp_56"
                     android:layout_height="match_parent"

@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide;
 import com.dusky.world.Base.DuskyApp;
 import com.dusky.world.Module.entity.Banner;
 import com.dusky.world.R;
-import com.nbsix.dsy.bannerview.BannerView;
+import com.nbsix.dsy.bannerView.BannerView;
 
 import java.util.ArrayList;
 import java.util.List;
