@@ -29,7 +29,7 @@ public class FateAdapter extends RecyclerView.Adapter<FateAdapter.ViewHolder>{
         this.context=context;
         this.mInflater=LayoutInflater.from(context);
         for (int i=0;i<3;i++){
-            fate.add(new Fate("http://img0.imgtn.bdimg.com/it/u=1352823040,1166166164&fm=27&gp=0.jpg","电锯惊魂"+i,i+"人看过"));
+            fate.add(new Fate("http://img0.imgtn.bdimg.com/it/u=1352823040,1166166164&fm=27&gp=0.jpg","电锯惊魂"+i,i+"票"));
         }
     }
     /**

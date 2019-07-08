@@ -179,13 +179,16 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private class HolderTypeFATE extends RecyclerView.ViewHolder {
         RecyclerView recyclerView_fate;
+        ImageView now;
         private HolderTypeFATE(View itemView) {
             super(itemView);
             recyclerView_fate = (RecyclerView) itemView.findViewById(R.id.recyclerView_fate);
+            now = (ImageView) itemView.findViewById(R.id.fate_now);
         }
     }
 
     private void bindTypeFATE(HolderTypeFATE holder){
+        Glide.with(context).load(R.drawable.qyqx).into(holder.now);
         FateAdapter fateAdapter=new FateAdapter(context);
 
         GridLayoutManager layoutManage = new GridLayoutManager(context, 3){

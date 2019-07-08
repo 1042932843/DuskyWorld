@@ -30,7 +30,7 @@ public class HotAdapter extends RecyclerView.Adapter<HotAdapter.ViewHolder>{
         this.context=context;
         this.mInflater=LayoutInflater.from(context);
         for(int i=0;i<3;i++){
-            datas.add(new Hot("","测试top"+i,"2.6w"));
+            datas.add(new Hot("","测试top超长的标题大家啊算了开大巨阿斯利康的骄傲了圣诞节啦"+i,"2.6w"));
         }
 
     }
