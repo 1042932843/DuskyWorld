@@ -32,7 +32,7 @@ public class ArticleActivity extends BaseActivity {
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_set;
+        return R.layout.activity_web_article;
     }
 
     @Override

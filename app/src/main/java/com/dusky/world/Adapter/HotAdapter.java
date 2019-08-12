@@ -1,6 +1,7 @@
 package com.dusky.world.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.dusky.world.Module.activities.ArticleActivity;
 import com.dusky.world.Module.entity.Fate;
 import com.dusky.world.Module.entity.Hot;
 import com.dusky.world.R;
@@ -57,6 +59,12 @@ public class HotAdapter extends RecyclerView.Adapter<HotAdapter.ViewHolder>{
         Glide.with(context).load(R.drawable.icon_medal).into(holder.img);
         holder.title.setText(datas.get(position).getTitle());
         holder.num.setText(datas.get(position).getExpNum());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                context.startActivity(new Intent(context, ArticleActivity.class));
+            }
+        });
     }
 
     @Override

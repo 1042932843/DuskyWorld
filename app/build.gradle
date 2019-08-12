@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'Dusky'
             keyPassword 'a132132'
-            storeFile file('D:/AndroidPro/DuskyWorld/Dusky.jks')
+            storeFile file('G:/PersonalPr/Dusky/Dusky.jks')
             storePassword 'a132132'
         }
     }
