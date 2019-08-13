@@ -37,6 +37,7 @@
         <activity android:name=".Module.activities.SetActivity" />
         <activity android:name=".Module.activities.TimeAxisActivity" />
         <activity android:name=".Module.activities.ArticleActivity" />
+        <activity android:name=".Module.activities.ArticleListActivity" />
         <!-- bugly -->
         <provider
             android:name="android.support.v4.content.FileProvider"
