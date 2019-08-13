@@ -34,7 +34,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 
 /**
@@ -84,10 +85,32 @@ public class DuskyApp extends MultiDexApplication implements Application.Activit
         strategy.setUploadProcess(processName == null || processName.equals(packageName));
 // 初始化Bugly
         CrashReport.initCrashReport(context, "d9d9e8dc08", true, strategy);*/
+
+        //整合X5崩溃上报
+        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(this);
+        strategy.setCrashHandleCallback(new CrashReport.CrashHandleCallback(){
+            public Map<String, String> onCrashHandleStart(int crashType, String errorType, String errorMessage, String errorStack) {
+                LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
+                String x5CrashInfo = com.tencent.smtt.sdk.WebView.getCrashExtraMessage(getApplicationContext());
+                map.put("x5crashInfo", x5CrashInfo);
+                return map;
+            }
+
+            @Override
+            public byte[] onCrashHandleStart2GetExtraDatas(int crashType, String errorType, String errorMessage, String errorStack) {
+                try {
+                    return "Extra data.".getBytes("UTF-8");
+                }catch (Exception e){
+                    return null;
+                }
+            }
+        });
+
+
         Beta.smallIconId = R.mipmap.ic_launcher;
         Beta.largeIconId = R.mipmap.ic_launcher;
         Beta.canShowUpgradeActs.add(HomePage.class);
-        Bugly.init(getApplicationContext(), "d9d9e8dc08", true);
+        Bugly.init(getApplicationContext(), "d9d9e8dc08", true,strategy);
 
     }
 
