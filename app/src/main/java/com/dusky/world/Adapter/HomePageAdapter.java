@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.MultiTransformation;
 import com.dusky.world.Design.helper.CircleCropBorder;
 import com.dusky.world.Module.activities.ArticleActivity;
+import com.dusky.world.Module.activities.ArticleListActivity;
 import com.dusky.world.Module.activities.TimeAxisActivity;
 import com.dusky.world.Module.entity.HomePageData;
 import com.dusky.world.Module.entity.TooSimple;
@@ -172,7 +173,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // context.startActivity(new Intent(context, ArticleActivity.class));
+                context.startActivity(new Intent(context, ArticleListActivity.class));
             }
         });
     }
