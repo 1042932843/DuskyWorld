@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.dusky.world.Module.activities.ArticleActivity;
-import com.dusky.world.Module.entity.Fate;
-import com.dusky.world.Module.entity.Hot;
+import com.dusky.world.Module.entity.ArticleItem;
+import com.dusky.world.Module.entity.User;
 import com.dusky.world.R;
 
 import java.util.ArrayList;
@@ -25,14 +25,20 @@ import java.util.ArrayList;
 public class HotAdapter extends RecyclerView.Adapter<HotAdapter.ViewHolder>{
 
     private LayoutInflater mInflater;
-    private ArrayList<Hot> datas=new ArrayList<>();
+    private ArrayList<ArticleItem> datas=new ArrayList<>();
     Context context;
 
     public HotAdapter(Context context){
         this.context=context;
         this.mInflater=LayoutInflater.from(context);
         for(int i=0;i<3;i++){
-            datas.add(new Hot("","测试top超长的标题大家啊算了开大巨阿斯利康的骄傲了圣诞节啦"+i,"2.6w"));
+            User user=new User("dusky","10423932843","http://img4.imgtn.bdimg.com/it/u=1243617734,335916716&fm=27&gp=0.jpg","500");
+            if(i==1){
+                datas.add(new ArticleItem("Titled大打上路大苏打到拉萨到啦测试长度标题嘎嘎"+i,"http://img4.imgtn.bdimg.com/it/u=1243617734,335916716&fm=27&gp=0.jpg",context.getString(R.string.tip),"手机游戏",i+"阅读",i*99+"回复",i*88+"喜欢",user));
+            }else{
+                datas.add(new ArticleItem("Titled大打上路大苏打到拉萨到啦测试长度标题嘎嘎嘎嘎打扫打扫打扫"+i,"http://img4.imgtn.bdimg.com/it/u=1243617734,335916716&fm=27&gp=0.jpg",context.getString(R.string.tip),"手机游戏",i+"阅读",i*99+"回复",i*88+"喜欢",user));
+            }
+
         }
 
     }
@@ -57,8 +63,10 @@ public class HotAdapter extends RecyclerView.Adapter<HotAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Glide.with(context).load(R.drawable.icon_medal).into(holder.img);
+        //Glide.with(context).load(R.drawable.qyqx).into(holder.backgroundImg);
         holder.title.setText(datas.get(position).getTitle());
-        holder.num.setText(datas.get(position).getExpNum());
+        holder.tag.setText(datas.get(position).getTag());
+        holder.like.setText(datas.get(position).getRead_v()+"·"+datas.get(position).getComment_v()+"·"+datas.get(position).getLike_v());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,13 +82,15 @@ public class HotAdapter extends RecyclerView.Adapter<HotAdapter.ViewHolder>{
 
     //自定义的ViewHolder，持有每个Item的的所有界面元素
     class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView img;
-        TextView title,num;
+        ImageView img,backgroundImg;
+        TextView title,tag,like;
         ViewHolder(View view){
             super(view);
             img = (ImageView)view.findViewById(R.id.medal1);
-            title = (TextView)view.findViewById(R.id.title1);
-            num = (TextView)view.findViewById(R.id.expnum1);
+            backgroundImg = (ImageView)view.findViewById(R.id.backgroundImg);
+            title = (TextView)view.findViewById(R.id.title);
+            tag=view.findViewById(R.id.tag);
+            like=view.findViewById(R.id.like);
         }
 
 

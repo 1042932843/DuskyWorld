@@ -3,13 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="@dimen/dp_4"
-    android:layout_marginStart="@dimen/dp_2"
-    android:layout_marginEnd="@dimen/dp_2"
     android:background="@drawable/bg_round_corner_line_grey"
     android:orientation="vertical"
     android:layout_gravity="center"
     android:gravity="center"
+    android:padding="@dimen/dp_1"
     >
 
 
@@ -49,7 +47,7 @@
         android:textColor="@color/pink"
         android:text="@string/vote"
         android:textSize="@dimen/sp_10"
-        android:layout_margin="@dimen/dp_2"
+        android:layout_margin="@dimen/dp_6"
         android:background="@drawable/bg_round_corner_line_pink"
         android:paddingEnd="@dimen/dp_16"
         android:paddingStart="@dimen/dp_16"

@@ -2,17 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dp_64"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="@dimen/dp_2"
     android:background="@drawable/bg_round_corner_line_grey"
     android:orientation="vertical"
     android:layout_gravity="center"
-    android:gravity="center"
-    >
+    android:gravity="center">
     <ImageView
         android:id="@+id/backgroundImg"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,22 +32,38 @@
             android:layout_toEndOf="@+id/medal1"
             android:layout_centerVertical="true">
             <TextView
-                android:id="@+id/title1"
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorText"
                 android:text="楚门的世界：假如你的人生是一场真人秀"
                 android:textSize="@dimen/sp_14"
                 />
-            <TextView
-                android:id="@+id/expnum1"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorHint"
-                android:text="2.5万阅读"
-                android:layout_below="@+id/title1"
-                android:textSize="@dimen/sp_12"
-                />
+                android:layout_below="@+id/title"
+                android:layout_marginTop="@dimen/dp_6">
+                <TextView
+                    android:id="@+id/tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorHint"
+                    tools:text="手机游戏"
+                    android:textSize="@dimen/sp_10"
+                    />
+
+                <TextView
+                    android:id="@+id/like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorHint"
+                    tools:text="9900阅读·200评论·1w+点赞"
+                    android:textSize="@dimen/sp_10"
+                    android:layout_toEndOf="@+id/tag"
+                    android:layout_marginStart="@dimen/dp_12"
+                    />
+            </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
 

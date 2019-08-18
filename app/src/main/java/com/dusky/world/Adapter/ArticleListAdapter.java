@@ -13,7 +13,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.MultiTransformation;
 import com.dusky.world.Design.helper.CircleCropBorder;
 import com.dusky.world.Module.entity.ArticleItem;
-import com.dusky.world.Module.entity.User;
 import com.dusky.world.R;
 
 import java.util.ArrayList;
@@ -54,7 +53,7 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view=mInflater.inflate(R.layout.layout_article_item,parent,false);
+        View view=mInflater.inflate(R.layout.activity_list_article_item,parent,false);
         //view.setBackgroundColor(Color.RED);
         ViewHolder viewHolder=new ViewHolder(view);
         return viewHolder;

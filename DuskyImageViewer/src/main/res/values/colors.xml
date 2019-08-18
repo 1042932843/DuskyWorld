@@ -48,4 +48,5 @@
     <color name="transparent">#00000000</color>
     <color name="colorText">#999999</color>
     <color name="colorHint">#70999999</color>
+    <color name="media_controller_bg">#99000000</color>
 </resources>

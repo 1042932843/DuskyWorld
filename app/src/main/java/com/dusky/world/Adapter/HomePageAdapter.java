@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.MultiTransformation;
 import com.dusky.world.Design.helper.CircleCropBorder;
+import com.dusky.world.Design.helper.SpaceItemDecoration;
 import com.dusky.world.Module.activities.ArticleActivity;
 import com.dusky.world.Module.activities.ArticleListActivity;
 import com.dusky.world.Module.activities.TimeAxisActivity;
@@ -129,10 +130,9 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return TYPE_DEFAULT;
     }
 
-
     private class HolderTypeDEFAULT extends RecyclerView.ViewHolder {
         ImageView img,user_avatar;
-        TextView title,num,user_name;
+        TextView title,user_name;
         private HolderTypeDEFAULT(View itemView) {
             super(itemView);
             img = (ImageView)itemView.findViewById(R.id.img);
@@ -142,6 +142,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             user_name = (TextView)itemView.findViewById(R.id.user_name);
         }
     }
+
     private void bindTypeDEFAULT(HolderTypeDEFAULT holder,final  int position){
         Glide.with(context).load(data.getDefaultTypes().get(position).getImgUrl()).into(holder.img);
         MultiTransformation multi = new MultiTransformation(new CircleCropBorder(2,context.getResources().getColor(R.color.gray)));
@@ -156,7 +157,6 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         });
 
     }
-
 
     private class HolderTypeHOT extends RecyclerView.ViewHolder {
         RecyclerView recyclerView_hot;
@@ -206,6 +206,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
 
         };
+        SpaceItemDecoration spaceItemDecoration=new SpaceItemDecoration(12,false,SpaceItemDecoration.GRIDLAYOUT);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -213,6 +214,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
         });
         holder.recyclerView_fate.setLayoutManager(layoutManage);
+        holder.recyclerView_fate.addItemDecoration(spaceItemDecoration);
         holder.recyclerView_fate.setAdapter(fateAdapter);
         holder.recyclerView_fate.setNestedScrollingEnabled(false);
 
@@ -247,8 +249,6 @@ public class HomePageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 return setSpanSize(position,tooSimpleAdapter.getList());
             }
         });
-
-
 
         holder.recyclerView_tooSimple.setLayoutManager(layoutManage);
         holder.recyclerView_tooSimple.setAdapter(tooSimpleAdapter);

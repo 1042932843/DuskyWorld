@@ -27,11 +27,11 @@ public class HomePageData {
         this.fates = fates;
     }
 
-    public ArrayList<Hot> getHots() {
+    public ArrayList<ArticleItem> getHots() {
         return hots;
     }
 
-    public void setHots(ArrayList<Hot> hots) {
+    public void setHots(ArrayList<ArticleItem> hots) {
         this.hots = hots;
     }
 
@@ -45,7 +45,7 @@ public class HomePageData {
 
     ArrayList<TooSimple> tooSimples;
     ArrayList<Fate> fates;
-    ArrayList<Hot> hots;
+    ArrayList<ArticleItem> hots;
     ArrayList<DefaultType> defaultTypes;
 
 
