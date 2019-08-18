@@ -1,8 +1,6 @@
 package com.dusky.world.Module.entity;
 
 public class ArticleItem {
-    private String user_avatar;
-    private String user_name;
     private String title;
     private String img;
     private String summary;
@@ -10,21 +8,25 @@ public class ArticleItem {
     private String read_v;
     private String comment_v;
     private String like_v;
+    private User user;
 
-    public String getUser_avatar() {
-        return user_avatar;
+    public ArticleItem(String title, String img, String summary, String tag, String read_v, String comment_v, String like_v, User user) {
+        this.title = title;
+        this.img = img;
+        this.summary = summary;
+        this.tag = tag;
+        this.read_v = read_v;
+        this.comment_v = comment_v;
+        this.like_v = like_v;
+        this.user = user;
     }
 
-    public void setUser_avatar(String user_avatar) {
-        this.user_avatar = user_avatar;
+    public User getUser() {
+        return user;
     }
 
-    public String getUser_name() {
-        return user_name;
-    }
-
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getTitle() {

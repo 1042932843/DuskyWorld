@@ -3,7 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/mygray"
+    android:layout_marginTop="@dimen/dp_6"
+    android:layout_marginBottom="@dimen/dp_6"
+    android:layout_marginEnd="@dimen/dp_12"
+    android:layout_marginStart="@dimen/dp_12">
     <LinearLayout
         android:id="@+id/group_user"
         android:layout_width="wrap_content"
@@ -51,7 +56,10 @@
         android:layout_height="wrap_content"
         tools:text="@string/tip"
         android:textColor="@color/colorText"
-        android:padding="@dimen/dp_12"
+        android:paddingStart="@dimen/dp_12"
+        android:paddingEnd="@dimen/dp_12"
+        android:paddingTop="@dimen/dp_12"
+        android:paddingBottom="@dimen/dp_6"
         android:textSize="@dimen/sp_14"/>
 
     <RelativeLayout

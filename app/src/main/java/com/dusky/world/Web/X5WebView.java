@@ -13,13 +13,6 @@ import com.tencent.smtt.sdk.WebViewClient;
  * @DESCRIPTION:X5内核的webview
  */
 public class X5WebView extends WebView {
-	private WebViewClient client = new WebViewClient() {
-		// 防止加载网页时调起系统浏览器
-		public boolean shouldOverrideUrlLoading(WebView view, String url) {
-			view.loadUrl(url);
-			return true;
-		}
-	};
 
 	public X5WebView(Context arg0) {
 		super(arg0);
@@ -30,6 +23,14 @@ public class X5WebView extends WebView {
 	public X5WebView(Context arg0, AttributeSet arg1) {
 		super(arg0, arg1);
 
+		// 防止加载网页时调起系统浏览器
+		WebViewClient client = new WebViewClient() {
+			// 防止加载网页时调起系统浏览器
+			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+				view.loadUrl(url);
+				return true;
+			}
+		};
 		this.setWebViewClient(client);
 		// this.setWebChromeClient(chromeClient);
 		// WebStorage webStorage = WebStorage.getInstance();
@@ -37,6 +38,7 @@ public class X5WebView extends WebView {
 		this.getView().setClickable(true);
 	}
 
+	@SuppressLint("SetJavaScriptEnabled")
 	private void initWebViewSettings() {
 		WebSettings webSetting = this.getSettings();
 		webSetting.setJavaScriptEnabled(true);

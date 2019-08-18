@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="本周热门"
+            android:text="本月热门"
             android:layout_alignParentStart="true"
             android:textColor="@color/colorText"
             android:gravity="center"
@@ -25,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="近期更新 >"
+            android:text="@string/more_article"
             android:layout_alignParentEnd="true"
             android:textColor="@color/colorText"
             android:layout_centerVertical="true"

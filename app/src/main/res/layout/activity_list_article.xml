@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <android.support.design.widget.AppBarLayout
@@ -29,6 +29,16 @@
 
         </android.support.design.widget.AppBarLayout>
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView_article"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            android:scrollbarThumbVertical="@color/mybg_light"
+            android:scrollbarSize="4dp"
+            android:background="@color/transparent"
+            android:overScrollMode="never"
+            />
     </LinearLayout>
 
 

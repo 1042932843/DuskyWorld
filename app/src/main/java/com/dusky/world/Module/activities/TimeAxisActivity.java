@@ -76,21 +76,21 @@ public class TimeAxisActivity extends BaseActivity {
                 .Builder(this)
                 .setOrientation(DotItemDecoration.VERTICAL)//if you want a horizontal item decoration,remember to set horizontal orientation to your LayoutManager
                 .setItemStyle(DotItemDecoration.STYLE_DRAW)
-                .setTopDistance(64)//dp
+                .setTopDistance(48)//dp
                 .setItemInterVal(72)//dp
-                .setItemPaddingLeft(24)//default value equals to item interval value
-                .setItemPaddingRight(24)//default value equals to item interval value
+                .setItemPaddingLeft(12)//default value equals to item interval value
+                .setItemPaddingRight(12)//default value equals to item interval value
                 .setDotColor(Color.WHITE)
                 .setDotRadius(3)//dp
                 .setDotPaddingTop(0)
-                .setDotInItemOrientationCenter(true)//set true if you want the dot align center
+                .setDotInItemOrientationCenter(false)//set true if you want the dot align center
                 .setLineColor(ContextCompat.getColor(this,R.color.gray_light))
                 .setLineWidth(1)//dp
                 .setEndText("END")
                 .setTextColor(Color.WHITE)
                 .setTextSize(10)//sp
                 .setDotPaddingText(2)//dp.The distance between the last dot and the end text
-                .setBottomDistance(40)//you can add a distance to make bottom line longer
+                .setBottomDistance(64)//you can add a distance to make bottom line longer
                 .create();
 
 
@@ -99,14 +99,8 @@ public class TimeAxisActivity extends BaseActivity {
         items.add(new TimeAxisItem("http://img0.imgtn.bdimg.com/it/u=1352823040,1166166164&fm=27&gp=0.jpg","2019-07-08","999次播放","小猪佩奇"));
         items.add(new TimeAxisItem("http://img0.imgtn.bdimg.com/it/u=1352823040,1166166164&fm=27&gp=0.jpg","2019-07-08","999次播放","大猪佩奇"));
         items.add(new TimeAxisItem("http://img0.imgtn.bdimg.com/it/u=1352823040,1166166164&fm=27&gp=0.jpg","2019-07-08","999次播放","野猪佩奇"));
-        items.add(new TimeAxisItem("http://img0.imgtn.bdimg.com/it/u=1352823040,1166166164&fm=27&gp=0.jpg","2019-07-08","999次播放","公猪佩奇"));
         items.add(new TimeAxisItem("http://img0.imgtn.bdimg.com/it/u=1352823040,1166166164&fm=27&gp=0.jpg","2019-07-08","999次播放","母猪佩奇"));
-        items.add(new TimeAxisItem("http://img0.imgtn.bdimg.com/it/u=1352823040,1166166164&fm=27&gp=0.jpg","2019-07-08","999次播放","母猪佩奇"));
-        items.add(new TimeAxisItem("http://img0.imgtn.bdimg.com/it/u=1352823040,1166166164&fm=27&gp=0.jpg","2019-07-08","999次播放","母猪佩奇"));
-        items.add(new TimeAxisItem("http://img0.imgtn.bdimg.com/it/u=1352823040,1166166164&fm=27&gp=0.jpg","2019-07-08","999次播放","母猪佩奇"));
-        items.add(new TimeAxisItem("http://img0.imgtn.bdimg.com/it/u=1352823040,1166166164&fm=27&gp=0.jpg","2019-07-08","999次播放","母猪佩奇"));
-        items.add(new TimeAxisItem("http://img0.imgtn.bdimg.com/it/u=1352823040,1166166164&fm=27&gp=0.jpg","2019-07-08","999次播放","母猪佩奇"));
-        items.add(new TimeAxisItem("http://img0.imgtn.bdimg.com/it/u=1352823040,1166166164&fm=27&gp=0.jpg","2019-07-08","999次播放","母猪佩奇"));
+
         timeAxisAdapter=new TimeAxisAdapter(TimeAxisActivity.this,items);
         recyclerView.addItemDecoration(mItemDecoration);
         recyclerView.setAdapter(timeAxisAdapter);
