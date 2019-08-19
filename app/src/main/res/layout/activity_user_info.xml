@@ -19,7 +19,7 @@
             android:layout_height="@dimen/dp_360"
             android:theme="@style/AppTheme"
             app:collapsedTitleTextAppearance="@style/ToolBar.TitleText"
-            app:contentScrim="@color/mybg_light"
+            app:contentScrim="@color/bg_light"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
             <FrameLayout
                 android:layout_width="match_parent"
@@ -29,7 +29,7 @@
                 android:id="@+id/user_appbar_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/mybg_light"
+                android:background="@color/bg_light"
                 android:fitsSystemWindows="true"
                 android:orientation="vertical"
                 android:weightSum="2">

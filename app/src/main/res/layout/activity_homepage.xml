@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:titleEnabled="false"
-            app:contentScrim="@color/mybg_light"
+            app:contentScrim="@color/bg_light"
             app:statusBarScrim="@android:color/transparent"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
@@ -179,7 +179,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
-        android:scrollbarThumbVertical="@color/mybg_light"
+        android:scrollbarThumbVertical="@color/bg_light"
         android:scrollbarSize="4dp"
         android:background="@color/transparent"
         android:overScrollMode="never"
