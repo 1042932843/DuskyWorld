@@ -196,7 +196,7 @@ public class HomePage extends BaseActivity {
             if(i==2){
                 s=2;
             }
-            defaultTypeArrayList.add(new DefaultType(user,"http://img3.imgtn.bdimg.com/it/u=2293177440,3125900197&fm=27&gp=0.jpg","十二月份图集"+i,i+"人看过",s));
+            defaultTypeArrayList.add(new DefaultType(user,"http://img3.imgtn.bdimg.com/it/u=2293177440,3125900197&fm=27&gp=0.jpg","测试默认数据文章"+i,i+"人看过",s));
         }
         homePageData.setDefaultTypes(defaultTypeArrayList);
         homePageAdapter=new HomePageAdapter(this,homePageData);

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DW</string>
+    <string name="app_name">祈星社</string>
 
     <string name="login_error">无法登录?</string>
     <string name="register_">申请注册</string>

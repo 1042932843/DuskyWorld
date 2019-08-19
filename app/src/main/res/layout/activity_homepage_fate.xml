@@ -17,7 +17,7 @@
             android:text="@string/fate_now"
             android:textStyle="bold"
             android:layout_alignParentStart="true"
-            android:textColor="@color/colorText"
+            android:textColor="@color/colorText_1"
             android:gravity="center"
             android:layout_centerVertical="true"
             />
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:text="@string/time_axis"
             android:layout_alignParentEnd="true"
-            android:textColor="@color/colorText"
+            android:textColor="@color/colorText_1"
             android:layout_centerVertical="true"
             android:textSize="@dimen/sp_12"/>
     </RelativeLayout>

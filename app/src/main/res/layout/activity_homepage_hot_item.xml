@@ -35,7 +35,7 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorText"
+                android:textColor="@color/colorText_1"
                 android:text="楚门的世界：假如你的人生是一场真人秀"
                 android:textSize="@dimen/sp_14"
                 />
@@ -48,7 +48,7 @@
                     android:id="@+id/tag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorHint"
+                    android:textColor="@color/colorText_3"
                     tools:text="手机游戏"
                     android:textSize="@dimen/sp_10"
                     />
@@ -57,7 +57,7 @@
                     android:id="@+id/like"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorHint"
+                    android:textColor="@color/colorText_3"
                     tools:text="9900阅读·200评论·1w+点赞"
                     android:textSize="@dimen/sp_10"
                     android:layout_toEndOf="@+id/tag"

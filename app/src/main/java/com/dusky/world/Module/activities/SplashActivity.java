@@ -1,10 +1,13 @@
 package com.dusky.world.Module.activities;
 
 import android.annotation.SuppressLint;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +24,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 
 
 public class SplashActivity extends BaseActivity {
+    ComponentName componentName_def,componentName_m;
+
     int time=5000;
 
     @BindView(R.id.splash)
@@ -65,7 +70,26 @@ public class SplashActivity extends BaseActivity {
                     finish();
                 });
 
+       /* componentName_def= new ComponentName(this,"com.dusky.world.default");
+        componentName_m= new ComponentName(this,"com.dusky.world.icon_m");
+        enableComponent(componentName_m,true);
+        enableComponent(componentName_def,false);*/
+    }
 
+    public void enableComponent(ComponentName componentName,boolean enable){
+        if(enable){
+            getPackageManager().setComponentEnabledSetting(
+                    componentName,
+                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                    PackageManager.DONT_KILL_APP
+            );
+        }else{
+            getPackageManager().setComponentEnabledSetting(
+                    componentName,
+                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                    PackageManager.DONT_KILL_APP
+            );
+        }
     }
 
     @Override

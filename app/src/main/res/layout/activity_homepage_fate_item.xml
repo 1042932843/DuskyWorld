@@ -22,7 +22,7 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorText"
+        android:textColor="@color/colorText_1"
         android:layout_below="@+id/img"
         android:layout_centerHorizontal="true"
         android:textSize="@dimen/sp_12"
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/colorHint"
+        android:textColor="@color/colorText_3"
         android:textSize="@dimen/sp_10"
         />
 

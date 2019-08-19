@@ -41,7 +41,7 @@ public class TooSimpleAdapter extends RecyclerView.Adapter<TooSimpleAdapter.View
             if(i==2){
                 s=2;
             }
-            tooSimples.add(new TooSimple(user,"http://img3.imgtn.bdimg.com/it/u=2293177440,3125900197&fm=27&gp=0.jpg","十二月份图集"+i,i+"人看过",s));
+            tooSimples.add(new TooSimple(user,"http://img3.imgtn.bdimg.com/it/u=2293177440,3125900197&fm=27&gp=0.jpg","十二月"+"·共"+i*6+"图",i+"人看过",s));
         }
     }
 
@@ -68,7 +68,8 @@ public class TooSimpleAdapter extends RecyclerView.Adapter<TooSimpleAdapter.View
      */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Glide.with(context).load(tooSimples.get(position).getImgUrl()).into(holder.img);
+        //tooSimples.get(position).getImgUrl()
+        Glide.with(context).load(R.drawable.banner).into(holder.img);
         holder.title.setText(""+tooSimples.get(position).getTitle());
         //holder.num.setText(""+fate.get(position).getExpNum());
     }

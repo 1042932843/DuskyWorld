@@ -15,9 +15,9 @@
 
     <application
         android:name="com.dusky.world.Base.DuskyApp"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_m"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_m"
         android:theme="@style/AppTheme">
         <activity android:name="com.dusky.world.Module.activities.SplashActivity">
             <intent-filter>

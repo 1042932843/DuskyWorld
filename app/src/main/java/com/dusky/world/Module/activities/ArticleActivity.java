@@ -78,11 +78,12 @@ public class ArticleActivity extends BaseActivity {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
 
+
             }
             @Override
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error){
                 super.onReceivedError(view, request, error);
-                webview.setVisibility(View.GONE);
+
             }
         });
 
@@ -94,7 +95,6 @@ public class ArticleActivity extends BaseActivity {
             public void onProgressChanged(WebView view, int newProgress) {
                 if(newProgress==100){
                     mPageLoadingProgressBar.setVisibility(View.GONE);//加载完网页进度条消失
-                    webview.setVisibility(View.VISIBLE);
                 }
                 else{
                     mPageLoadingProgressBar.setVisibility(View.VISIBLE);//开始加载网页时显示进度条
@@ -126,7 +126,7 @@ public class ArticleActivity extends BaseActivity {
         // webSetting.setRenderPriority(WebSettings.RenderPriority.HIGH);
         // webSetting.setPreFectch(true);
         if (mIntentUrl == null) {
-            webview.loadUrl("http://www.llss.live/wp/all/anime/%e3%80%90survive-more%e3%80%91%e3%81%95%e3%82%8c%e3%82%8b%e3%81%8c%e3%83%9e%e3%83%9e%ef%bc%81%ef%bc%81-%ef%bd%9e%e5%bd%bc%e5%a5%b3%e3%81%ae%e5%ae%b6%e3%81%ab%e5%88%9d%e8%a8%aa%e5%95%8f%e3%81%97/");
+            webview.loadUrl("");
         } else {
             webview.loadUrl(mIntentUrl.toString());
         }

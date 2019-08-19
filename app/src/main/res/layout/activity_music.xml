@@ -214,7 +214,7 @@
                     android:gravity="right"
                     android:singleLine="true"
                     android:text="00:00"
-                    android:textColor="@color/colorText"
+                    android:textColor="@color/colorText_1"
                     android:textSize="10sp" />
 
                 <com.dusky.world.Design.MusicPlayer.PlayerSeekBar
@@ -239,7 +239,7 @@
                     android:layout_weight="1"
                     android:singleLine="true"
                     android:text="00:00"
-                    android:textColor="@color/colorText"
+                    android:textColor="@color/colorText_1"
                     android:textSize="10sp" />
             </LinearLayout>
 

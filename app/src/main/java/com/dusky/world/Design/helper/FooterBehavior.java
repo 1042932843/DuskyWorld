@@ -14,7 +14,7 @@ import android.view.animation.Interpolator;
 /**
  * @AUTHOR: dsy
  * @TIME: 2018/9/29
- * @DESCRIPTION:顶部显示，上拉隐藏
+ * @DESCRIPTION:顶部显示，上拉隐藏（回想下当时是想做回到顶部）
  */
 public class FooterBehavior extends CoordinatorLayout.Behavior<View> {
     private static final Interpolator INTERPOLATOR = new FastOutSlowInInterpolator();

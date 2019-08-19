@@ -34,7 +34,7 @@ public class HotAdapter extends RecyclerView.Adapter<HotAdapter.ViewHolder>{
         for(int i=0;i<3;i++){
             User user=new User("dusky","10423932843","http://img4.imgtn.bdimg.com/it/u=1243617734,335916716&fm=27&gp=0.jpg","500");
             if(i==1){
-                datas.add(new ArticleItem("Titled大打上路大苏打到拉萨到啦测试长度标题嘎嘎"+i,"http://img4.imgtn.bdimg.com/it/u=1243617734,335916716&fm=27&gp=0.jpg",context.getString(R.string.tip),"手机游戏",i+"阅读",i*99+"回复",i*88+"喜欢",user));
+                datas.add(new ArticleItem("Titled大打上"+i,"http://img4.imgtn.bdimg.com/it/u=1243617734,335916716&fm=27&gp=0.jpg",context.getString(R.string.tip),"手机游戏",i+"阅读",i*99+"回复",i*88+"喜欢",user));
             }else{
                 datas.add(new ArticleItem("Titled大打上路大苏打到拉萨到啦测试长度标题嘎嘎嘎嘎打扫打扫打扫"+i,"http://img4.imgtn.bdimg.com/it/u=1243617734,335916716&fm=27&gp=0.jpg",context.getString(R.string.tip),"手机游戏",i+"阅读",i*99+"回复",i*88+"喜欢",user));
             }
