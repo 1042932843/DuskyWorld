@@ -28,7 +28,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_276"
+                android:layout_height="@dimen/dp_240"
                 >
 
                 <com.dusky.world.Design.starView.BackgroundView
@@ -48,7 +48,7 @@
                     app:BannerView_orientation="0"
                     app:BannerView_indicatorMargin="2dp"
                     app:BannerView_auto="false"
-                    app:BannerView_spacing="@dimen/dp_8"
+                    app:BannerView_spacing="@dimen/dp_0"
                     app:BannerView_centerScale="1.3"
                     />
 
@@ -181,7 +181,7 @@
         android:scrollbars="vertical"
         android:scrollbarThumbVertical="@color/bg_light"
         android:scrollbarSize="4dp"
-        android:background="@color/transparent"
+        android:background="#292929"
         android:overScrollMode="never"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >

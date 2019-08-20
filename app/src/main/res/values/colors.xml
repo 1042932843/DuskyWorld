@@ -47,6 +47,8 @@
     <color name="gray_trans">#44999999</color>
     <color name="gray_light">#dcdcdc</color>
 
+
+    <color name="mode_dark_">#0A0A0A</color>
     <color name="my_gray">#0A0A0A</color>
     <color name="bg_light">#2B2B2C</color>
     <color name="transparent">#00000000</color>
