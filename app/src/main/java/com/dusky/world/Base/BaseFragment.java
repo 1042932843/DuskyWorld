@@ -38,7 +38,7 @@ public abstract class BaseFragment extends RxFragment implements View.OnTouchLis
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
-    parentView = inflater.inflate(getLayoutResId(), container, false);
+    View parentView = inflater.inflate(getLayoutResId(), container, false);
 
     return parentView;
   }

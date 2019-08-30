@@ -7,6 +7,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -145,6 +147,15 @@ public class HomePage extends BaseActivity {
         if (!CommonUtil.isNetworkAvailable(this)) {
             CommonUtil.showNoNetWorkDlg(this);
         }
+        /*
+         val viewOutlineProvider = object : ViewOutlineProvider() {
+            override fun getOutline(view: View, outline: Outline) {
+                // 可以指定圆形，矩形，圆角矩形，path
+                outline.setOval(0, 0, view.width, view.height)
+            }
+        }
+        View.setOutlineProvider(viewOutlineProvider)
+         */
 
         setBadge();
         loadData();
@@ -211,7 +222,12 @@ public class HomePage extends BaseActivity {
             }
         };
         recyclerView.addOnScrollListener(mEndlessRecyclerOnScrollListener);
-
+        recyclerView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return false;
+            }
+        });
     }
 
     private long exitTime=0;

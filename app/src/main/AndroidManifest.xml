@@ -18,8 +18,9 @@
         android:icon="@mipmap/ic_launcher_m"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_m"
-        android:theme="@style/AppTheme">
-        <activity android:name="com.dusky.world.Module.activities.SplashActivity">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name="com.dusky.world.Module.activities.TestHomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,6 +39,7 @@
         <activity android:name=".Module.activities.TimeAxisActivity" />
         <activity android:name=".Module.activities.ArticleActivity" />
         <activity android:name=".Module.activities.ArticleListActivity" />
+        <activity android:name=".Module.activities.SplashActivity" />
         <!-- bugly -->
         <provider
             android:name="android.support.v4.content.FileProvider"

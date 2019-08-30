@@ -52,6 +52,12 @@ public class SetActivity extends BaseActivity {
     }
 
 
+    @OnClick(R.id.test_home)
+    public void go_test(){
+
+    }
+
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_set;

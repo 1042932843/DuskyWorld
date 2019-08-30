@@ -166,6 +166,16 @@ public class DuskyApp extends MultiDexApplication implements Application.Activit
     }
 
 
+    public RequestOptions getRoundedCorners(int radius){
+        //配置glide圆角
+        return new RequestOptions()
+                .centerCrop()
+                //.error(R.drawable.zhanweitu)
+                .priority(Priority.HIGH)
+                .transform(new RoundedCorners(5))
+                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC);
+    }
+
     private void init() {
 
         //配置glide圆角
