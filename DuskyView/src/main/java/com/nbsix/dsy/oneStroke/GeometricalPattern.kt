@@ -15,7 +15,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 /**
- * 描述了一笔画所需要的几何图形
+ * 描述了所需要的图形
  */
 class GeometricalPattern(
         /**
@@ -404,8 +404,6 @@ class GeometricalPattern(
         }
     }
 
-    inner class MainHandler(looper: Looper?) : Handler(looper) {
-
-    }
+    inner class MainHandler(looper: Looper?) : Handler(looper)
 
 }
