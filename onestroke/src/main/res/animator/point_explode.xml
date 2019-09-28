@@ -5,8 +5,8 @@
         android:duration="1500"
         android:repeatMode="reverse"
         android:repeatCount="1"
-        android:valueFrom="16dp"
-        android:valueTo="48dp"
+        android:valueFrom="8dp"
+        android:valueTo="16dp"
         android:valueType="floatType"
         />
     <animator

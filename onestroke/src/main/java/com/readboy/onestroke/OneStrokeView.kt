@@ -20,7 +20,7 @@ class OneStrokeView @JvmOverloads constructor(
 
     private var trackLine: TrackLine? = null
 
-    private val hintAnimator: ValueAnimator = ValueAnimator.ofFloat(0f, 80f)
+    private val hintAnimator: ValueAnimator = ValueAnimator.ofFloat(0f, 60f)
 
     private var radius: Float = -1f
 

@@ -1,16 +1,12 @@
 package com.readboy.onestroke
 
-class Point(val x: Int, val y: Int) {
-    companion object {
-        /**
-         * 每行的矩形数量
-         */
-        const val RECT_NUM = 7
-    }
+
+class Point(val x: Int, val y: Int,rectnum:Int) {
+
 
     init {
-        if (x < 0 || y < 0 || x >= RECT_NUM || y >= RECT_NUM) {
-            throw IllegalArgumentException("startX and y must be greater than 0 and less than $RECT_NUM") as Throwable
+        if (x < 0 || y < 0 || x >= rectnum || y >= rectnum) {
+            throw IllegalArgumentException("startX and y must be greater than 0 and less than $rectnum")
         }
     }
 

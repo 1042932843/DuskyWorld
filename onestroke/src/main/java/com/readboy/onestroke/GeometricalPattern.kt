@@ -129,7 +129,7 @@ class GeometricalPattern(
 
         val radiusProperty = PropertyValuesHolder.ofFloat("defaultRadius",
                 resources.getDimension(R.dimen.geometrical_point_radius),
-                resources.getDimension(R.dimen.geometrical_point_radius_x4))
+                resources.getDimension(R.dimen.geometrical_point_radius_large))
         val alphaProperty = PropertyValuesHolder.ofInt("alpha", 255, 0)
         finishAnimation = ValueAnimator.ofPropertyValuesHolder(radiusProperty, alphaProperty)
         finishAnimation.addUpdateListener(this)
@@ -293,7 +293,7 @@ class GeometricalPattern(
         paint.color = currentLineColor
         paint.strokeWidth = strokeWidth
 
-        canvas.drawLines(screenLines, paint)
+        canvas.drawLines(screenLines!!, paint)
     }
 
     /**
@@ -305,7 +305,7 @@ class GeometricalPattern(
         for (info in pointInfos) {
             paint.color = currentPointColor
             paint.alpha = 255
-            val rect = grid.convertToSmallRect(info) ?: return
+            val rect = grid.convertToSmallRect(info)
             canvas.drawCircle(rect.exactCenterX(), rect.exactCenterY(), defaultRadius, paint)
             if (finishAnimation.isStarted) {
                 paint.alpha = alpha
@@ -322,7 +322,7 @@ class GeometricalPattern(
                 val point = holder.point
                 val screenPointF = grid.convertToXY(point)
                 textPaint.strokeWidth = 5f
-                textPaint.textSize = 80f
+                textPaint.textSize = hintTextSize
                 textPaint.color = Color.WHITE
                 textPaint.textAlign = Paint.Align.CENTER
                 val str = holder.strs[holder.index].toString()
