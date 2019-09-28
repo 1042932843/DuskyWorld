@@ -1,4 +1,4 @@
-package com.nbsix.dsy.oneStroke
+package com.readboy.onestroke
 import android.animation.PropertyValuesHolder
 import android.animation.ValueAnimator
 import android.graphics.Canvas
@@ -9,7 +9,6 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.view.animation.LinearInterpolator
-import com.nbsix.dsy.bannerView.R
 import java.lang.ref.WeakReference
 import java.util.*
 import kotlin.collections.ArrayList

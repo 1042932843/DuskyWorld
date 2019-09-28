@@ -1,4 +1,4 @@
-package com.nbsix.dsy.oneStroke
+package com.readboy.onestroke
 
 class Point(val x: Int, val y: Int) {
     companion object {

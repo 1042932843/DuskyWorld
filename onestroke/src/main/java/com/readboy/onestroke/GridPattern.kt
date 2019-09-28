@@ -1,4 +1,4 @@
-package com.nbsix.dsy.oneStroke
+package com.readboy.onestroke
 
 import android.graphics.Rect
 

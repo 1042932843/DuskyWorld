@@ -10,6 +10,7 @@
  */
 package com.dusky.world.Module.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -54,7 +55,7 @@ public class SetActivity extends BaseActivity {
 
     @OnClick(R.id.test_home)
     public void go_test(){
-
+        startActivity(new Intent(SetActivity.this,TestHomeActivity.class));
     }
 
 

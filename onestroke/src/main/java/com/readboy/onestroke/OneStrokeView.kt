@@ -1,4 +1,4 @@
-package com.nbsix.dsy.oneStroke
+package com.readboy.onestroke
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
@@ -8,7 +8,6 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import android.view.animation.LinearInterpolator
-import com.nbsix.dsy.bannerView.R
 import java.lang.ref.WeakReference
 import java.util.*
 

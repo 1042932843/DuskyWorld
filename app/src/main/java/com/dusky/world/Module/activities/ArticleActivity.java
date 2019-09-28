@@ -87,9 +87,7 @@ public class ArticleActivity extends BaseActivity {
             }
         });
 
-        webview.setWebChromeClient(new WebChromeClient(){
 
-        });
         webview.setWebChromeClient(new WebChromeClient(){
             @Override
             public void onProgressChanged(WebView view, int newProgress) {

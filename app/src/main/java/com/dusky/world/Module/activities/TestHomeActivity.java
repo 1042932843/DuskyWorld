@@ -13,16 +13,14 @@ package com.dusky.world.Module.activities;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.dusky.world.Base.BaseActivity;
 import com.dusky.world.R;
 import com.dusky.world.Utils.ToastUtil;
-import com.nbsix.dsy.oneStroke.LinesInfo;
-import com.nbsix.dsy.oneStroke.OneStrokeView;
-import com.nbsix.dsy.oneStroke.Point;
+import com.readboy.onestroke.LinesInfo;
+import com.readboy.onestroke.OneStrokeView;
+import com.readboy.onestroke.Point;
 
 import java.util.ArrayList;
 
