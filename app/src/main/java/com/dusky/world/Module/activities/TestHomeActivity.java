@@ -71,12 +71,12 @@ public class TestHomeActivity extends BaseActivity {
         }
 
         ArrayList<Point> infos= new ArrayList<Point>();
-        infos.add(new Point(3, 0,16));
-        infos.add(new Point(1, 5,16));
-        infos.add(new Point(6, 2,16));
-        infos.add(new Point(0, 2,16));
-        infos.add(new Point(5, 5,16));
-        infos.add(new Point(3, 0,16));
+        infos.add(new Point(3, 0));
+        infos.add(new Point(1, 5));
+        infos.add(new Point(6, 2));
+        infos.add(new Point(0, 2));
+        infos.add(new Point(5, 5));
+        infos.add(new Point(3, 0));
 
 
         LinesInfo linesInfo=new LinesInfo(infos);
